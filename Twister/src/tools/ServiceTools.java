@@ -13,7 +13,7 @@ public class ServiceTools {
 		} catch (JSONException j) {
 			j.printStackTrace();
 			return serviceRefused("JSONException", 100);
-		} 
+		} //
 		return obj;
 	}
 
