@@ -5,6 +5,10 @@ import org.json.JSONObject;
 import tools.ServiceTools;
 import tools.UserTools;
 
+/**
+ * @author LAOUER Walid
+ *
+ */
 public class CreatUserS {
 	
 	public static JSONObject createUser(String nom, String prenom, String mail, String login, String mdp) {

@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.CreatUserS;;
 
+/**
+ * @author LAOUER Walid
+ *
+ */
 public class CreatUser extends HttpServlet{
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

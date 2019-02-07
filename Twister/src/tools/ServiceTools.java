@@ -17,4 +17,9 @@ public class ServiceTools {
 		return obj;
 	}
 
+	public static JSONObject Login(int id_user, String log) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
