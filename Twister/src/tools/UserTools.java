@@ -37,4 +37,14 @@ public class UserTools {
 		return false;
 	}
 
+	/**
+	 * @param key
+	 */
+	public static void removeConnection(String key) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }
