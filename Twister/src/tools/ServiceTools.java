@@ -13,13 +13,21 @@ public class ServiceTools {
 		} catch (JSONException j) {
 			j.printStackTrace();
 			return serviceRefused("JSONException", 100);
-		} //
+		} 
+		return obj;
+	}
+	
+	public static JSONObject serviceAccepted() {
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("Output", new String("OK"));
+		} catch (JSONException j) {
+			j.printStackTrace();
+			return serviceRefused("JSONException", 100);
+		} 
 		return obj;
 	}
 
-	public static JSONObject Login(int id_user, String log) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }
