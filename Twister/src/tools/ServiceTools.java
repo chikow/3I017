@@ -20,7 +20,7 @@ public class ServiceTools {
 	public static JSONObject serviceAccepted() {
 		JSONObject obj = new JSONObject();
 		try {
-			obj.put("Output", new String("OK"));
+			obj.put("Output", new String("Service Accepted"));
 		} catch (JSONException j) {
 			j.printStackTrace();
 			return serviceRefused("JSONException", 100);

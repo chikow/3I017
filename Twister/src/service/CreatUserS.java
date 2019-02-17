@@ -11,7 +11,7 @@ import tools.UserTools;
  */
 public class CreatUserS {
 	
-	public static JSONObject createUser(String nom, String prenom, String mail, String login, String mdp) {
+	public static JSONObject createUser(String login, String nom, String prenom, String mail, String mdp) {
 		if (nom == null || prenom == null || mail == null || login == null || mdp == null) {
 			return ServiceTools.serviceRefused("Paramètre(s) vide(s)", -1);
 		}
@@ -24,7 +24,7 @@ public class CreatUserS {
 			return ServiceTools.serviceRefused("L'adresse mail existe déja", -3);
 		}
 		
-		return UserTools.insertUser(nom, prenom, mail, login, mdp);
+		return UserTools.insertUser(login,nom, prenom, mail, mdp);
 	}
 
 }
