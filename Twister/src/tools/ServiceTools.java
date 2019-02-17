@@ -28,16 +28,6 @@ public class ServiceTools {
 		return obj;
 	}
 
-	/**
-	 * @param id_user
-	 * @param log
-	 * @return
-	 */
-	public static JSONObject Login(int id_user, String log) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 
 }

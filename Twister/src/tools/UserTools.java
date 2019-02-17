@@ -123,6 +123,18 @@ public class UserTools {
 		return key;
 	}
 
+	/**
+	 * @param log
+	 * @param mdp
+	 * @return
+	 */
+	public static JSONObject Login(String log, String mdp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
 
 
 }
