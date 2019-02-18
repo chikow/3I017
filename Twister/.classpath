@@ -6,9 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Downloads/servlet-api.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads/json-org.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="lib" path="/Users/user/Downloads/json-org.jar"/>
 	<classpathentry kind="lib" path="/Users/user/Downloads/servlet-api.jar"/>
 	<classpathentry kind="lib" path="/Users/user/Downloads/mysql-connector-java-5.1.18-bin.jar"/>

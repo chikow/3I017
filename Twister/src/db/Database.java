@@ -9,12 +9,12 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class Database {
-	private static Database database=null;
+	private static Database database;
 	private DataSource dataSource;
 	
 	/**
-	 * Constructeur d'une base de données.
-	 * @param name Le nom du driver pour établir la connexion.
+	 * Constructeur d'une base de donnï¿½es.
+	 * @param name Le nom du driver pour ï¿½tablir la connexion.
 	 * @throws SQLException.
 	 */
 	public Database(String name) throws SQLException {
@@ -27,8 +27,8 @@ public class Database {
 	}
 	
 	/**
-	 * Établir une connexion.
-	 * @return La connexion établie.
+	 * ï¿½tablir une connexion.
+	 * @return La connexion ï¿½tablie.
 	 * @throws SQLException.
 	 */
 	public Connection getConnection() throws SQLException {
@@ -36,8 +36,8 @@ public class Database {
 	}
 	
 	/**
-	 * Établis une connexion vers notre base de données MySQL.
-	 * @return La connexion MySQL établie.
+	 * ï¿½tablis une connexion vers notre base de donnï¿½es MySQL.
+	 * @return La connexion MySQL ï¿½tablie.
 	 * @throws SQLException.
 	 */
 	public static Connection getMySQLConnection() throws SQLException {
