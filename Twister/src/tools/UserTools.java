@@ -92,17 +92,78 @@ public class UserTools {
 	}
 
 	public static boolean checkPassword(String log, String mdp) {
-		// TODO Auto-generated method stub
+		Connection co = null;
+		Statement st = null;
+		ResultSet res = null;
+		try {
+			co = Database.getMySQLConnection();
+			st = co.createStatement();
+			String query = "SELECT * from users where user_login = '" + log + "' and user_password= '"+mdp+"'";
+			res = st.executeQuery(query);
+			if (res.next()) {
+				return true;
+			}
+		} catch (SQLException s) {
+			s.printStackTrace();
+		} finally {
+			try {
+				res.close();
+				st.close();
+				co.close();
+			} catch (SQLException ignore) {}
+		}
 		return false;
+
 	}
 
 	public static int getIdUser(String log) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection co = null;
+		Statement st = null;
+		ResultSet res = null;
+		int id_user = 0;
+		try {
+			co = Database.getMySQLConnection();
+			st = co.createStatement();
+			String query = "SELECT user_id from users where login = '" + log + "'";
+			res = st.executeQuery(query);
+			if (res.next()) {
+				id_user = res.getInt("user_id");
+			}
+		} catch (SQLException s) {
+			s.printStackTrace();
+		} finally {
+			try {
+				res.close();
+				st.close();
+				co.close();
+			} catch (SQLException ignore) {}
+		}
+		return id_user;
 	}
 
 	public static boolean userConnect(int id_user) {
-		// TODO Auto-generated method stub
+		Connection co = null;
+		Statement st = null;
+		ResultSet res = null;
+		try {
+			co = Database.getMySQLConnection();
+			st = co.createStatement();
+			String query = "SELECT user_id from connection where user_login = '"+id_user+"'";
+			res = st.executeQuery(query);
+			
+			if (res.next()) {
+				return true;
+			}
+			
+		} catch (SQLException s) {
+			s.printStackTrace();
+		} finally {
+			try {
+				res.close();
+				st.close();
+				co.close();
+			} catch (SQLException ignore) {}
+		}
 		return false;
 	}
 
@@ -129,8 +190,26 @@ public class UserTools {
 	 * @return
 	 */
 	public static JSONObject Login(String log, String mdp) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection co = null;
+		Statement st = null;
+		String key = generatekey();
+
+		try {
+			co = Database.getMySQLConnection();
+			st = co.createStatement();
+			String query = "INSERT INTO connection (`user_id`, `key`) VALUES('" + getIdUser(log) + "','" + key + "')";
+			st.executeUpdate(query);
+
+		} catch (SQLException s) {
+			s.printStackTrace();
+			return ServiceTools.serviceRefused("SQLException:", 1000);
+		} finally {
+			try {
+				st.close();
+				co.close();
+			} catch (SQLException s) {}
+		}
+		return ServiceTools.serviceAccepted();
 	}
 
 	
