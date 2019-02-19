@@ -18,6 +18,6 @@ package db;
 		
 	/*
 	 * Un pooling c'est comme une boite , il ne ferme pas vraiment pour eviter qu'à
-	 * chaqiue fois on doit ouvrir/fermer la connexion
+	 * chaqiue fois on doit ouvrir/fermer la connexion//
 	 */
 }
