@@ -1,10 +1,15 @@
 package service;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import db.DBStatic;
+import db.Database;
+import tools.Data;
 import tools.ServiceTools;
 import tools.UserTools;
-
+import java.sql.Connection;
+import java.sql.SQLException;
 /**
  * @author LAOUER Walid
  *
@@ -13,18 +18,45 @@ public class CreatUserS {
 	
 	public static JSONObject createUser(String login, String nom, String prenom, String mail, String mdp) {
 		if (nom == null || prenom == null || mail == null || login == null || mdp == null) {
-			return ServiceTools.serviceRefused("Paramètre(s) vide(s)", -1);
+			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}
 		
-		if (UserTools.userExist(login)) {
-			return ServiceTools.serviceRefused("Login existe déja", -2);
+		Connection co=null;
+		try {
+			co = Database.getMySQLConnection();
+		
+		
+		if (UserTools.userExist(login, co)) {
+			co.close();
+			return ServiceTools.serviceRefused(Data.MESSAGE_USER_ALREADY_EXISTS, Data.CODE_USER_ALREADY_EXISTS);
 		}
 		
-		if (UserTools.mailExist(mail)) {
-			return ServiceTools.serviceRefused("L'adresse mail existe déja", -3);
+		if (UserTools.mailExist(mail, co)) {
+			co.close();
+			return ServiceTools.serviceRefused(Data.MESSAGE_MAIL_ALREADY_EXISTS, Data.CODE_MAIL_ALREADY_EXISTS);
 		}
 		
-		return UserTools.insertUser(login,nom, prenom, mail, mdp);
+		return UserTools.insertUser(login,nom, prenom, mail, mdp, co);
+		
+		}catch(JSONException e) {
+			e.printStackTrace();
+			ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON,Data.CODE_ERROR_JSON);}
+		catch(SQLException s) {
+			s.printStackTrace();
+			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);}
+			
+		finally {
+			if ((!DBStatic.is_pooling) && (co != null))
+				try {
+					co.close();
+				} catch (SQLException e) {
+					System.err.println("Error closing connexion : " + e.getMessage());
+
+					e.printStackTrace();
+				}
+		}
+		
+		return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
 	}
 
 }

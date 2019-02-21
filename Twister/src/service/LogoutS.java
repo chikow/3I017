@@ -3,9 +3,13 @@
  */
 package service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import db.Database;
 import tools.ServiceTools;
 import tools.UserTools;
 import tools.Data;
@@ -18,12 +22,22 @@ public class LogoutS {
 		if (log == null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}
-		int id_user = UserTools.getIdUser(log);
+	
+		Connection co=null;
 		try {
-			return UserTools.removeConnection(id_user);
-		} catch (JSONException e) {
-			e.printStackTrace();
-			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
+			co = Database.getMySQLConnection();
+			int id_user = UserTools.getIdUser(log, co);
+			return UserTools.removeConnection(id_user, co);
+		} catch (JSONException | SQLException s) {
+			s.printStackTrace();
+			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
+		}finally {
+			try {
+				co.close();
+			} catch (SQLException e) {
+				System.err.println("Error closing connexion : " + e.getMessage());
+				e.printStackTrace();
+			}
 		}
 	}
 
