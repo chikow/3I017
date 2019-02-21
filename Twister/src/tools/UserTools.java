@@ -6,8 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import db.DBStatic;
 import db.Database;
 
 /**
@@ -124,54 +127,94 @@ public class UserTools {
 		try {
 			co = Database.getMySQLConnection();
 			st = co.createStatement();
-			String query = "SELECT user_id from users where login = '" + log + "'";
+			String query = "SELECT user_id FROM users WHERE user_login= \""+log+"\";";
+			//System.out.println("ici passe par la requete");
 			res = st.executeQuery(query);
+			//System.out.println(res.getInt("user_id"));
 			if (res.next()) {
+				System.out.println("il existe bien un resultat");
 				id_user = res.getInt("user_id");
 			}
-		} catch (SQLException s) {
-			s.printStackTrace();
+		} catch (Exception e) 
+		{
+			System.err.println("Error userExists : " + e.getMessage());
+			return id_user;
+		
 		} finally {
 			try {
 				res.close();
 				st.close();
-				co.close();
-			} catch (SQLException ignore) {}
+				if ((!DBStatic.is_pooling) && (co != null))
+					co.close();
+			} catch (SQLException e)
+			{
+				System.err.println("Error closing connexion : " + e.getMessage());
+			}
 		}
 		return id_user;
 	}
 
-	public static boolean userConnect(int id_user) {
+	public static boolean userConnected(int id_user) {
 		Connection co = null;
 		Statement st = null;
 		ResultSet res = null;
 		try {
 			co = Database.getMySQLConnection();
 			st = co.createStatement();
-			String query = "SELECT user_id from connection where user_login = '"+id_user+"'";
+			String query = "SELECT * FROM connection WHERE user_id = '"+id_user+"'";
 			res = st.executeQuery(query);
 			
 			if (res.next()) {
 				return true;
 			}
 			
-		} catch (SQLException s) {
-			s.printStackTrace();
+		} catch (Exception e) 
+		{
+			System.err.println("Error userConnected : " + e.getMessage());
+			return false;
 		} finally {
 			try {
 				res.close();
 				st.close();
-				co.close();
-			} catch (SQLException ignore) {}
+				if ((!DBStatic.is_pooling) && (co != null))
+					co.close();
+			} catch (SQLException e)
+			{
+				System.err.println("Error closing connexion : " + e.getMessage());
+			}
 		}
 		return false;
 	}
 
 	/**
 	 * @param key
+	 * @throws JSONException 
 	 */
-	public static void removeConnection(String key) {
+	public static JSONObject removeConnection(int user_id) throws JSONException {
 		// TODO Auto-generated method stub
+		Connection co = null;
+		Statement st = null;
+		//int res = null;
+		try {
+			co = Database.getMySQLConnection(); //user_login= \""+log+"\";"
+			st = co.createStatement();
+			String query = "DELETE FROM connection WHERE user_id = '"+user_id+"'";
+			st.executeUpdate(query);
+		}catch (Exception e) 
+		{
+			System.err.println("Error removeConnection " + e.getMessage());
+			return ServiceTools.serviceRefused("Error", 7);
+		} finally {
+			try {
+				st.close();
+				if ((!DBStatic.is_pooling) && (co != null))
+					co.close();
+			} catch (SQLException e)
+			{
+				System.err.println("Error closing connexion : " + e.getMessage());
+			}
+		}
+		return ServiceTools.serviceAccepted().put("User Disconnected", 001);
 		
 	}
 	private static String generatekey() {
@@ -188,8 +231,9 @@ public class UserTools {
 	 * @param log
 	 * @param mdp
 	 * @return
+	 * @throws JSONException 
 	 */
-	public static JSONObject Login(String log, String mdp) {
+	public static JSONObject insertConnexion(String log, String mdp) throws JSONException {
 		Connection co = null;
 		Statement st = null;
 		String key = generatekey();
@@ -209,7 +253,14 @@ public class UserTools {
 				co.close();
 			} catch (SQLException s) {}
 		}
-		return ServiceTools.serviceAccepted();
+		return ServiceTools.serviceAccepted().put(log+" signed in", 001);
+	}
+	
+	
+	public static JSONArray searchUserByLogin(String login)
+	{
+		//TO DO
+		return new JSONArray();
 	}
 
 	

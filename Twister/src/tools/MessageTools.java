@@ -13,13 +13,15 @@ public class MessageTools {
 
 	/**
 	 * @param key
-	 * @param id_message
 	 * @param text
 	 * @return
 	 */
-	public static JSONObject postComment(String key, int id_message, String text) {
-		// TODO Auto-generated method stub
-		return null;
+	public static JSONObject postTwist(String key, String text) {
+
+		return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
+
+
 	}
+
 
 }

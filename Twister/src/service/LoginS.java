@@ -1,6 +1,9 @@
 package service;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import tools.Data;
 import tools.ServiceTools;
 import tools.UserTools;
 
@@ -24,13 +27,17 @@ public class LoginS {
 		
 		int id_user = UserTools.getIdUser(log);
 		
-		boolean connect_ok = UserTools.userConnect(id_user);
+		boolean connect_ok = UserTools.userConnected(id_user);
 		if (connect_ok)
 			return ServiceTools.serviceRefused("Already Connected", 3);	
 		
 		
 		
-		return UserTools.Login(log, mdp);
+		try {
+			return UserTools.insertConnexion(log, mdp);
+		} catch (JSONException e) {
+			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
+		}
 	}
 
 }

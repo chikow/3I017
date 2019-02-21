@@ -13,15 +13,15 @@ import tools.ServiceTools;
  *
  */
 public class RemoveFriendS {
-	public static JSONObject removeFriend(String key, int id_friend) {
-		if (key == null)
+	public static JSONObject removeFriend(int id_user, int id_friend) {
+		if (id_user== 0)
 			return ServiceTools.serviceRefused("Paramètre(s) vide(s)", -1);
 		
-		boolean is_friend = FriendTools.alreadyFriend(key, id_friend);
+		boolean is_friend = FriendTools.alreadyFriend(id_user, id_friend);
 		if (!is_friend) 
 			return ServiceTools.serviceRefused("Not Friends", -2);
 		
-		return FriendTools.deleteFriend(key, id_friend);
+		return FriendTools.deleteFriend(id_user, id_friend);
 	}
 
 }

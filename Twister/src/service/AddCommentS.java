@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 
 import tools.MessageTools;
+import tools.ServiceTools;
 
 /**
  * @author LAOUER Walid
@@ -15,7 +16,10 @@ import tools.MessageTools;
  */
 public class AddCommentS {
 	public static JSONObject postComment(String key, int id_message, String text) {
-		return MessageTools.postComment(key, id_message, text);
-	}
+		if(key == null || text==null || id_message==0) {
+			return MessageTools.postTwist(key, text);
+		}
+		return ServiceTools.serviceAccepted();	
+		}
 
 }
