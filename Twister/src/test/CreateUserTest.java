@@ -20,8 +20,9 @@ public class CreateUserTest {
 
 
 		JSONObject obj = CreatUserS.createUser("neel","Nail", "BELAREF", "bealref@gmail.com", "123");
-		//System.out.println("heeeeey");
-		System.out.println(UserTools.checkPassword("neel", "12"));
+		System.out.println(obj.toString());
+		System.out.println("heeeeey");
+		System.out.println(UserTools.checkPassword("neel", "123"));
 
 	}
 

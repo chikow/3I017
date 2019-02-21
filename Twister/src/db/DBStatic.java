@@ -10,10 +10,16 @@ package db;
 
 	public class DBStatic {
 		
-		public final static String mysql_host = "remotemysql.com";//"sql7.freemysqlhosting.net:3306";
-		public final static String mysql_db = "mMc9LcPdNJ";//"sql7279445";
-		public final static String mysql_username ="mMc9LcPdNJ" ;//"sql7279445";
-		public final static String mysql_password ="5dPxpC5JvJ";//"4rjgZKRwbq";
+//		public final static String mysql_host = "remotemysql.com";//"sql7.freemysqlhosting.net:3306";
+//		public final static String mysql_db = "mMc9LcPdNJ";//"sql7279445";
+//		public final static String mysql_username ="mMc9LcPdNJ" ;//"sql7279445";
+//		public final static String mysql_password ="5dPxpC5JvJ";//"4rjgZKRwbq";
+//		public final static boolean is_pooling = false;
+		
+		public final static String mysql_host = "sql7.freemysqlhosting.net:3306";
+		public final static String mysql_db = "sql7279445";
+		public final static String mysql_username ="sql7279445";
+		public final static String mysql_password ="4rjgZKRwbq";
 		public final static boolean is_pooling = false;
 		
 	/*
