@@ -118,7 +118,7 @@ public class UserTools {
 		Statement st = null;
 		ResultSet res = null;
 		st = co.createStatement();
-		String query = "SELECT * FROM connection WHERE user_id = '"+id_user+"'";
+		String query = "SELECT * FROM sessions WHERE user_id = '"+id_user+"'";
 		res = st.executeQuery(query);
 
 		if (res.next()) {
@@ -142,7 +142,7 @@ public class UserTools {
 		Statement st = null;
 		//int res = null;
 		st = co.createStatement();
-		String query = "DELETE FROM connection WHERE user_id = '"+user_id+"'";
+		String query = "DELETE FROM sessions WHERE user_id = '"+user_id+"'";
 		st.executeUpdate(query);
 
 		return ServiceTools.serviceAccepted().put("User Disconnected", 001);
@@ -172,7 +172,7 @@ public class UserTools {
 
 
 		st = co.createStatement();
-		String query = "INSERT INTO connection (`user_id`, `key`) VALUES('" + getIdUser(log, co) + "','" + key + "')";
+		String query = "INSERT INTO sessions (`session_key`, `user_id`) VALUES('" + getIdUser(log, co) + "','" + key + "')";
 		st.executeUpdate(query);
 
 
