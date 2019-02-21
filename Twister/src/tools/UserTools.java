@@ -172,7 +172,7 @@ public class UserTools {
 
 
 		st = co.createStatement();
-		String query = "INSERT INTO sessions (`session_key`, `user_id`) VALUES('" + getIdUser(log, co) + "','" + key + "')";
+		String query = "INSERT INTO sessions (`user_id`, `session_key`) VALUES('" + getIdUser(log, co) + "','" + key + "')";
 		st.executeUpdate(query);
 
 
