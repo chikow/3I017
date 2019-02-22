@@ -43,8 +43,11 @@ public class LoginS {
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_ALREADY_CONNECTED, Data.CODE_USER_ALREADY_CONNECTED);	
 			}
 			return UserTools.insertConnexion(log, mdp, co);
-			} catch (SQLException | JSONException s) {
+			} catch (SQLException s) {
+				s.printStackTrace();
 				return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
+			}catch(JSONException e) {
+				return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
 			}finally {
 			if ((!DBStatic.is_pooling) && (co != null))
 				try {

@@ -22,7 +22,7 @@ public class RemoveTwistTest {
 	 */
 	public static void main(String[] args) throws SQLException, JSONException {
 
-		JSONObject obj = RemoveTwistS.RemoveTwist("NWWUFLyVJjgvP8yHe81ul8xsMoE4cAJE", "5c6f540d3bc2f844015727e7");
+		JSONObject obj = RemoveTwistS.RemoveTwist("7uocJsq4SBLqnToWn38pwTYzvFdbibpe", "5c6fe1ed37ca9f3d573afdb5");
 		System.out.println( obj);
 	}
 

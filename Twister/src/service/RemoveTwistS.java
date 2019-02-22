@@ -22,14 +22,14 @@ import tools.ServiceTools;
  *
  */
 public class RemoveTwistS {
-	public static JSONObject RemoveTwist(String key,String id) throws SQLException, JSONException {
+	public static JSONObject RemoveTwist(String key,String tweet_id) throws SQLException, JSONException {
 		MongoCollection<Document> m = Database.getMongoMessage();
 		Connection c = Database.getMySQLConnection();
-		if(key == null || id==null ) {
+		if(key == null || tweet_id==null ) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 			
 		}
-		return MessageTools.RemoveTwist(key, id ,c , m);
+		return MessageTools.RemoveTwist(key, tweet_id ,c , m);
 		}
 
 }

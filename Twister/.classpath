@@ -11,9 +11,9 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/user/Downloads/mongo-java-driver-3.10.1.jar"/>
-	<classpathentry kind="lib" path="/Users/user/Downloads/mysql-connector-java-5.1.18-bin.jar"/>
-	<classpathentry kind="lib" path="/Users/user/Downloads/servlet-api.jar"/>
-	<classpathentry kind="lib" path="/Users/user/Downloads/json-org.jar"/>
+	<classpathentry kind="lib" path="D:/S6/json-org.jar"/>
+	<classpathentry kind="lib" path="D:/S6/mongo-java-driver-3.10.1.jar"/>
+	<classpathentry kind="lib" path="D:/S6/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="lib" path="D:/S6/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

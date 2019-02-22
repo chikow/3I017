@@ -23,9 +23,9 @@ public class CreateUserTest {
 	public static void main(String[] args) {
 
 
-//		JSONObject obj = CreatUserS.createUser("neel","Nail", "BELAREF", "bealref@gmail.com", "123");
-//		System.out.println(obj.toString());
-//		System.out.println("heeeeey");
+		JSONObject obj = CreatUserS.createUser("Delpax","del", "Pax", "Delpax@gmail.com", "1234");
+		System.out.println(obj.toString());
+		System.out.println("heeeeey");
 		
 
 		//Pour tester les methodes UserTools faut établire la connextion au niveau du main

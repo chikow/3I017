@@ -145,7 +145,7 @@ public class UserTools {
 		String query = "DELETE FROM sessions WHERE user_id = '"+user_id+"'";
 		st.executeUpdate(query);
 
-		return ServiceTools.serviceAccepted().put("User Disconnected", 001);
+		return ServiceTools.serviceAccepted().put(getLogin(user_id)+" Disconnected", 001);
 
 	}
 	public static String generatekey() {
@@ -244,6 +244,8 @@ public class UserTools {
 			st.close();
 			return id_user;
 	}
+	
+	//public static string getKeyFromId(){retrun null;}
 	
 }
 	

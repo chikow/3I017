@@ -29,7 +29,7 @@ public class AddComment {
 				response.setContentType("text/plain");
 				PrintWriter out = response.getWriter();
 				
-				out.println(AddCommentS.postComment(key, Integer.parseInt(id_message), text).toString());
+				out.println(AddCommentS.postComment(key, id_message, text).toString());
 			}
 	
 
