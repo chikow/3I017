@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import service.AddTwistS;
 import service.LoginS;
+import tools.UserTools;
 
 /**
  * @author LAOUER Walid
@@ -23,7 +24,7 @@ public class AddMessageTest {
 	 * @throws SQLException 
 	 */
 	public static void main(String[] args) throws SQLException, JSONException {
-		JSONObject obj = AddTwistS.AddTwistS("NWWUFLyVJjgvP8yHe81ul8xsMoE4cAJE", "TEESTT");
+		JSONObject obj = AddTwistS.AddTwistS("NWWUFLyVJjgvP8yHe81ul8xsMoE4cAJE", UserTools.generatekey());
 		System.out.println( obj);
 	}
 

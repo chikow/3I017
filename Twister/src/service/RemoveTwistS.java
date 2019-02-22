@@ -3,6 +3,7 @@
  */
 package service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.bson.Document;
@@ -21,13 +22,14 @@ import tools.ServiceTools;
  *
  */
 public class RemoveTwistS {
-	public static JSONObject RemoveTwist(String key,String idMessage) throws SQLException, JSONException {
+	public static JSONObject RemoveTwist(String key,String id) throws SQLException, JSONException {
 		MongoCollection<Document> m = Database.getMongoMessage();
-		if(key == null || idMessage==null ) {
+		Connection c = Database.getMySQLConnection();
+		if(key == null || id==null ) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 			
 		}
-		return MessageTools.RemoveTwist(key, idMessage , m);
+		return MessageTools.RemoveTwist(key, id ,c , m);
 		}
 
 }

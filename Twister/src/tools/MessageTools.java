@@ -63,14 +63,17 @@ public class MessageTools {
 	 * @param m
 	 * @return
 	 * @throws JSONException 
+	 * @throws SQLException 
 	 */
-	public static JSONObject RemoveTwist(String key, String idMessage, MongoCollection<Document> m) throws JSONException {
+	public static JSONObject RemoveTwist(String key, String id,Connection conn, MongoCollection<Document> m) throws JSONException, SQLException {
 		Document query = new Document();
-		query.append("_id",new ObjectId(idMessage));
+		query.append("_id",new ObjectId(id));
+		if(checkAuthor(key, id, conn, m)) {
 		m.deleteOne(query);
+		}
 
-		FindIterable<Document> fi = m.find(query);
-		MongoCursor<Document> cur = fi.iterator();
+		FindIterable<Document> f = m.find(query);
+		MongoCursor<Document> cur = f.iterator();
 
 		boolean res = true;
 		while(cur.hasNext()) {
@@ -81,6 +84,29 @@ public class MessageTools {
 			return ServiceTools.serviceAccepted().put(key+" has been successfully", 1);
 			}
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
+	}
+	public static boolean checkAuthor(String key, String id, Connection conn, MongoCollection<Document> message_collection) throws SQLException {
+
+		int userID = UserTools.getIdFromKey(key, conn);
+		Document query = new Document();
+		query.append("user_id", userID);
+		query.append("_id", new ObjectId(id));
+
+		message_collection.find(query);
+
+		FindIterable<Document> f = message_collection.find(query);
+		MongoCursor<Document> cur = f.iterator();
+
+		boolean res = false;
+		while(cur.hasNext()) {
+
+			Document obj = cur.next();
+
+			res = true;
+		}
+
+		return res;
+
 	}
 
 

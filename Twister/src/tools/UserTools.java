@@ -148,7 +148,7 @@ public class UserTools {
 		return ServiceTools.serviceAccepted().put("User Disconnected", 001);
 
 	}
-	private static String generatekey() {
+	public static String generatekey() {
 		String chars = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
 		String key = "";
 		for (int i=0; i<32; i++) {
