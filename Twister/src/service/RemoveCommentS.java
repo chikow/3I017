@@ -22,7 +22,7 @@ public class RemoveCommentS {
 		
 	}
 	
-	public static JSONObject DeleteComment(String key, String id_message) {
+	public static JSONObject DeleteComment(String key, String id_message, String id_comment) {
 		if(key==null || id_message==null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}
@@ -34,7 +34,7 @@ public class RemoveCommentS {
 			if(id_user==0) {
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED,Data.CODE_USER_NOT_CONNECTED );
 			}
-			return MessageTools.removeComment(id_message,id_user, m);
+			return MessageTools.removeComment(id_message, id_comment, m);
 		}catch(SQLException | JSONException s) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
 		}finally {

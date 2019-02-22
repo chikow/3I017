@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.bson.Document;
@@ -17,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.sql.Connection;
 
+import com.mongodb.DBCursor;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -142,26 +144,44 @@ public class MessageTools {
 
 	public static JSONObject postComment(String key, String id_message, String text, MongoCollection<Document> message_collection, Connection co) throws JSONException, SQLException {
 		// TODO Auto-generated method stub
-		//JSONObject comment = new  JSONObject();
-		//comment.put(text, 1);//doit-on mettre une clé incrementable pour pouvoir ordonné les comments plus tard et faire des classification
-		Bson filter = new Document("_id", new ObjectId(id_message));
-		Bson Q = new Document(UserTools.getLogin(UserTools.getIdFromKey(key, co)), text);
-		Bson query = new Document("comments", Q);
-		Bson updateOperationDocument = new Document("$addToSet", query);
-		message_collection.updateOne(filter, updateOperationDocument);
-		//query.append("_id", new ObjectId(id_message));
-		//cur.next().append("test ", text);
+		Document comments = new Document();
+		ObjectId objectId = genererObjectId(message_collection);
+		comments.append("id_comment", objectId);
+		GregorianCalendar c = new GregorianCalendar();
+		
+		comments.put("date", c.getTime());
+		
+		Document auteur = new Document();
+		auteur.append("login", UserTools.getLogin(UserTools.getIdFromKey(key, co)));
+		comments.append("author",auteur);
+		comments.append("content", text);
+		comments.append("idMessage", id_message);
+		
+		Document content = new Document("comments", comments);
+		Document push = new Document("$push", content);
+		Document filter = new Document("_id", new ObjectId(id_message));
+		
+		message_collection.updateOne(filter, push);
+		comments.append("idMessage", id_message);
+//		Bson filter = new Document("_id", new ObjectId(id_message));
+//		Bson Q = new Document(UserTools.getLogin(UserTools.getIdFromKey(key, co)), text);
+//		Bson query = new Document("comments", Q);
+//		Bson updateOperationDocument = new Document("$push", query);
+//		message_collection.updateOne(filter, updateOperationDocument);
 		return ServiceTools.serviceAccepted().put("Comment has been added", 1);
 	}
 
-	public static JSONObject removeComment(String id_message, int id_user, MongoCollection<Document> message_collection) throws JSONException {
-		Bson filter = new Document("_id", new ObjectId(id_message));
-		Document query = new Document("comments", new ObjectId("1"));
-		Document found = (Document) message_collection.find(query).first();
-		if(found != null)
-			System.out.println("element found");
-		Bson updateOperationDocument = new Document("$pull", query);
-		message_collection.updateOne(filter, updateOperationDocument);
+	public static JSONObject removeComment(String id_message, String id_comment, MongoCollection<Document> message_collection) throws JSONException {
+		Bson filter = new Document("id_comment", new ObjectId(id_comment));
+		Bson query = new Document("comments", filter);
+		Document msg_query = new Document("$pull", query);
+		System.out.println(msg_query.toString());
+		Bson updateOperationDocument = new Document("_id", new ObjectId(id_message));
+		message_collection.updateOne(updateOperationDocument, msg_query);
+//		if(found != null)
+//			System.out.println("element found");
+//		Bson updateOperationDocument = new Document("$pull", query);
+//		message_collection.updateOne(filter, updateOperationDocument);
 		//MongoCursor<Document> c = message_collection.find().iterator();
 		
 //		while(c.hasNext())
@@ -169,5 +189,22 @@ public class MessageTools {
 		return ServiceTools.serviceAccepted().put("Comment deleted", 1);
 	}
 
+	public static ObjectId genererObjectId(MongoCollection<Document> message_collection)
+	{
+
+		ObjectId id;
+		while(true)
+		{
+			id = new ObjectId();
+			Document query = new Document();
+			query.append("id_comment", new Document("$exists", true).append("$ne", id));
+			//FindIterable<Document> cursor = message_collection.find(query);
+			//System.out.println(query.toString());
+			//FindIterable<Document> cursor = message_collection.find(query);
+			//if (((Document) cursor).size() != 0)
+				break;
+		}
+		return id;
+	}
 
 }
