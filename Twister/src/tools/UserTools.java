@@ -190,7 +190,6 @@ public class UserTools {
 			co = Database.getMySQLConnection();
 			st = co.createStatement();
 			String query = "SELECT user_login FROM users WHERE user_id = "+id+";";
-			//System.out.println("ici passe par la requete");
 			res = st.executeQuery(query);
 			if (res.next()) {
 				return res.getString(1);
@@ -224,6 +223,32 @@ public class UserTools {
 
 
 
+	/**
+	 * @param key
+	 * @return
+	 */
+	public static int getIdFromKey(String key,Connection co) throws SQLException {
+		Statement st = null;
+		ResultSet res = null;
+		int id_user = 0;
+		
+			st = co.createStatement();
+			String query = "SELECT user_id FROM sessions WHERE session_key= \""+key+"\";";
+			res = st.executeQuery(query);
 
-
+			if (res.next()) {
+				System.out.println("il existe bien un resultat");
+				id_user = res.getInt("user_id");
+			}
+			res.close();
+			st.close();
+			return id_user;
+	}
+	
 }
+	
+
+
+
+
+

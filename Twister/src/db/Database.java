@@ -8,6 +8,13 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.bson.Document;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
 public class Database {
 	private static Database database;
 	private DataSource dataSource;
@@ -50,4 +57,12 @@ public class Database {
 			return(database.getConnection());
 		}
 	}
+	
+	public static MongoCollection<Document> getMongoMessage() {
+		MongoClient mongo = MongoClients.create();
+		MongoDatabase db = mongo.getDatabase("db");
+		MongoCollection<Document> message_collection = db.getCollection("Message");
+		return message_collection;
+	}
+	
 }

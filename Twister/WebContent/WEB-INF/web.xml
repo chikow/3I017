@@ -3,7 +3,7 @@
 <web-app> 
 	<servlet>
 		<servlet-name>UserC</servlet-name>
-		<servlet-class>servlets.CreatUser</servlet-class>
+		<servlet-class>servlet.CreatUser</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>Login</servlet-name>

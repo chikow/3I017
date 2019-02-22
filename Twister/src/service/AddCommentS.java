@@ -17,7 +17,7 @@ import tools.ServiceTools;
 public class AddCommentS {
 	public static JSONObject postComment(String key, int id_message, String text) {
 		if(key == null || text==null || id_message==0) {
-			return MessageTools.postTwist(key, text);
+			//return MessageTools.postTwist(key, text);
 		}
 		return ServiceTools.serviceAccepted();	
 		}
