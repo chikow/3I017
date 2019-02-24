@@ -139,7 +139,7 @@ public class UserTools {
 	 */
 	public static JSONObject removeConnection(String key, Connection co) throws JSONException, SQLException {
 		// TODO Auto-generated method stub
-		int id_user = UserTools.getIdFromKey(key, co);
+		int id_user = SessionTools.getIdFromKey(key, co);
 		if( id_user==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
@@ -218,6 +218,7 @@ public class UserTools {
 		}
 	}
 
+<<<<<<< HEAD
 	public static JSONArray searchUserByLogin(String login)
 	{
 		//TO DO
@@ -252,6 +253,9 @@ public class UserTools {
 	
 	public static String getKeyFromId(){return null;}
 	public static int getIdFromLogin(String Login){return 0;}
+=======
+	
+>>>>>>> branch 'master' of https://github.com/chikow/3I017.git
 }
 	
 

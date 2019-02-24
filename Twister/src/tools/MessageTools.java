@@ -248,7 +248,7 @@ public class MessageTools {
 		try
 		{
 			Document comment = cursor.next();
-			Document recup = new Document("comments", new Document());
+			//Document recup = new Document("comments", new Document());
 			return   (BasicDBList) comment.get("Comments");
 		}
 		catch(Exception e)

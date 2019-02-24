@@ -18,11 +18,14 @@ import service.AddTwistS;
  *
  */
 public class AddComment extends HttpServlet{
+<<<<<<< HEAD
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+=======
+>>>>>>> branch 'master' of https://github.com/chikow/3I017.git
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			
