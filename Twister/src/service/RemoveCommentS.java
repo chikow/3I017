@@ -32,6 +32,7 @@ public class RemoveCommentS {
 			co = Database.getMySQLConnection();
 			int id_user = UserTools.getIdFromKey(key, co);
 			if(id_user==0) {
+				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED,Data.CODE_USER_NOT_CONNECTED );
 			}
 			return MessageTools.removeComment(id_message, id_comment, m);

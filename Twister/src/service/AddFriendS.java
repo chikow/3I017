@@ -27,7 +27,13 @@ public class AddFriendS {
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
-			boolean is_friend = FriendTools.alreadyFriend(key, id_friend, co);
+			int id_user = UserTools.getIdFromKey(key, co);
+			if( id_user==0) {
+				co.close();
+				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
+			}
+
+			boolean is_friend = FriendTools.alreadyFriend(id_user, id_friend, co);
 			if (is_friend) {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_ALREADY_FRIEND, Data.CODE_USER_ALREADY_FRIEND);
@@ -55,15 +61,21 @@ public class AddFriendS {
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
-			return FriendTools.listFollowers(key, co);
+
+			int id_user = UserTools.getIdFromKey(key, co);
+			if( id_user==0) {
+				co.close();
+				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
+			}
+			return FriendTools.listFollowers(id_user, co);
 		}catch(SQLException s) {
 			s.printStackTrace();
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
-		
+
 		}catch(JSONException e) {
 			e.printStackTrace();
-		return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
-		
+			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
+
 		}finally {
 			if ((!DBStatic.is_pooling) && (co != null))
 				try {
@@ -76,6 +88,6 @@ public class AddFriendS {
 		}
 
 	}
-	
+
 
 }

@@ -5,10 +5,21 @@
 		<servlet-name>UserC</servlet-name>
 		<servlet-class>servlet.CreatUser</servlet-class>
 	</servlet>
+	
 	<servlet>
 		<servlet-name>Login</servlet-name>
 		<servlet-class>servlet.Login</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>Twist</servlet-name>
+		<servlet-class>servlet.AddComment</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Twist</servlet-name>
+		<url-pattern>/Twist</url-pattern>
+	</servlet-mapping>
 	
 	<servlet-mapping>
 		<servlet-name>UserC</servlet-name>

@@ -6,6 +6,7 @@ package tools;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -13,9 +14,11 @@ import java.util.List;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -36,14 +39,12 @@ public class MessageTools {
 	 */
 
 
-	public static JSONObject postTwist(String key ,String text, MongoCollection<Document> message_collection) throws SQLException, JSONException{
+	public static JSONObject postTwist(int id_user ,String text, MongoCollection<Document> message_collection) throws SQLException, JSONException{
 		Connection co = Database.getMySQLConnection();
 		Document query = new Document();
-		int user_id = UserTools.getIdFromKey(key,co);
-		if(user_id ==0)
-			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
+
 		System.out.println("user connected!");
-		query.append("login", UserTools.getLogin(user_id));
+		query.append("login", UserTools.getLogin(id_user));
 		query.append("date", new Date());
 		query.append("content", text);
 		List<String> d = new ArrayList<String>();
@@ -60,7 +61,7 @@ public class MessageTools {
 			res = true;
 		}
 		if (res) {
-			return ServiceTools.serviceAccepted().put(UserTools.getLogin(user_id)+" twist has been posted successfully", 1);
+			return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+" twist has been posted successfully", 1);
 		}
 		return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
 	}
@@ -73,11 +74,7 @@ public class MessageTools {
 	 * @throws JSONException 
 	 * @throws SQLException 
 	 */
-	public static JSONObject RemoveTwist(String key, String id_message,Connection conn, MongoCollection<Document> m) throws JSONException, SQLException {
-		int user_id = UserTools.getIdFromKey(key,conn);
-		if(user_id ==0)
-			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
-		
+	public static JSONObject RemoveTwist(int id_user, String id_message,Connection conn, MongoCollection<Document> m) throws JSONException, SQLException {
 		Document query = new Document();
 		query.append("_id",new ObjectId(id_message));
 		FindIterable<Document> fi = m.find(query);
@@ -88,21 +85,21 @@ public class MessageTools {
 			System.out.println("twist exist");
 			message_exist = true;
 		}
-		if(checkAuthor(key, id_message, conn, m)) {
+		if(checkAuthor(id_user, id_message, conn, m)) {
 			m.deleteOne(query);
 		}
 		if(message_exist)
-			return ServiceTools.serviceAccepted().put(UserTools.getLogin(UserTools.getIdFromKey(key, conn))+" twist has been removed successfully", 1);
+			return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+" twist has been removed successfully", 1);
 		else
-			return ServiceTools.serviceAccepted().put(UserTools.getLogin(UserTools.getIdFromKey(key, conn))+" has no twist to remove", 1);
+			return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+" has no twist to remove", 1);
 
 	}
 
-	public static boolean checkAuthor(String key, String id_message, Connection conn, MongoCollection<Document> message_collection) throws SQLException {
+	// A comprendre?!
+	public static boolean checkAuthor(int userID, String id_message, Connection conn, MongoCollection<Document> message_collection) throws SQLException {
 
-		int userID = UserTools.getIdFromKey(key, conn);
 		Document query = new Document();
-		query.append("user_id", userID);
+		query.append("login", UserTools.getLogin(userID));
 		query.append("_id", new ObjectId(id_message));
 
 		message_collection.find(query);
@@ -113,7 +110,7 @@ public class MessageTools {
 		boolean res = false;
 		while(cur.hasNext()) {
 
-			Document obj = cur.next();
+			cur.next();
 
 			res = true;
 		}
@@ -122,7 +119,7 @@ public class MessageTools {
 
 	}
 
-	public static JSONObject postComment(String key, String id_message, String text, MongoCollection<Document> message_collection, Connection co) throws JSONException, SQLException {
+	public static JSONObject postComment(int id_user, String id_message, String text, MongoCollection<Document> message_collection, Connection co) throws JSONException, SQLException {
 		// TODO Auto-generated method stub
 		Document comments = new Document();
 		ObjectId objectId = genererObjectId(message_collection);
@@ -132,7 +129,7 @@ public class MessageTools {
 		comments.put("date", c.getTime());
 
 		Document auteur = new Document();
-		auteur.append("login", UserTools.getLogin(UserTools.getIdFromKey(key, co)));
+		auteur.append("login", UserTools.getLogin(id_user));
 		comments.append("author",auteur);
 		comments.append("content", text);
 		comments.append("idMessage", id_message);
@@ -150,6 +147,8 @@ public class MessageTools {
 		//		message_collection.updateOne(filter, updateOperationDocument);
 		return ServiceTools.serviceAccepted().put("Comment has been added", 1);
 	}
+
+
 
 	public static JSONObject removeComment(String id_message, String id_comment, MongoCollection<Document> message_collection) throws JSONException {
 		Bson filter = new Document("id_comment", new ObjectId(id_comment));
@@ -193,4 +192,71 @@ public class MessageTools {
 		return id;
 	}
 
+	public static JSONArray listTwist(String login ,int nbMessage, boolean orderAsc, MongoCollection<Document> message_collection) 
+	{
+		Document query = new Document();
+		query.append("login", login);
+		FindIterable<Document> fi = message_collection.find(query);
+
+		if (!orderAsc)
+			fi.sort(new Document("date", -1));
+		else
+			fi.sort(new Document("date", 1));
+
+		MongoCursor<Document> cur = fi.iterator();
+		JSONArray userMessages = new JSONArray();
+		try
+		{
+			int cpt = 0;
+			while( (cpt < nbMessage) && (cur.hasNext()))
+			{
+				JSONObject json = new JSONObject();
+				Document document = cur.next();
+
+				json.put("content", document.get("content"));
+				json.put("date", document.get("date"));
+				json.put("author", document.get("author"));
+				json.put("id", document.get("_id"));
+				json.put("comments", listComment(document.get("_id").toString(), message_collection));
+
+				userMessages.put(json);
+
+				cpt++;
+			}
+			JSONObject ajout = new JSONObject();
+			if(!cur.hasNext())
+				ajout.put("end", "no");
+			else
+				ajout.put("end", "yes");
+
+			userMessages.put(ajout);
+
+			return userMessages;
+		}
+		catch(Exception e)
+		{
+			System.err.println("listMessage : " + e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static BasicDBList listComment(String id_twist, MongoCollection<Document> message_collection) {
+		Document query = new Document("_id", new ObjectId(id_twist));
+		FindIterable<Document> fi = message_collection.find(query);
+		MongoCursor<Document> cursor = fi.iterator();
+		try
+		{
+			Document comment = cursor.next();
+			Document recup = new Document("comments", new Document());
+			return   (BasicDBList) comment.get("Comments");
+		}
+		catch(Exception e)
+		{
+			System.err.println("listComment : " + e.getMessage());
+			return null;
+		}
+	}
 }
+
+

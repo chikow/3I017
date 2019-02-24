@@ -26,7 +26,7 @@ import tools.UserTools;
 public class AddCommentS {
 	public static JSONObject postComment(String key, String id_message, String text) {
 		if(key == null || text==null || id_message==null) {
-			//return MessageTools.postTwist(key, text);
+			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}
 		MongoCollection<Document> m = Database.getMongoMessage();
 		Connection co=null;
@@ -38,7 +38,7 @@ public class AddCommentS {
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}
 			try {
-				return MessageTools.postComment(key,id_message, text, m, co);
+				return MessageTools.postComment(id,id_message, text, m, co);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,6 +48,38 @@ public class AddCommentS {
 		}catch(SQLException s) {
 			s.printStackTrace();
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
+		}finally {
+			if ((!DBStatic.is_pooling) && (co != null))
+				try {
+					co.close();
+				} catch (SQLException e) {
+					System.err.println("Error closing connexion : " + e.getMessage());
+
+					e.printStackTrace();
+				}
+		}
+
+	}
+
+	public static JSONObject listComments(String key, String id_twist)
+	{
+		if(key == null || id_twist == null) {
+			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
+		}
+		MongoCollection<Document> m = Database.getMongoMessage();
+		Connection co=null;
+		try {
+			co = Database.getMySQLConnection();
+			int id =UserTools.getIdFromKey(key, co);
+			if(id==0) {
+				co.close();
+				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
+			}
+			return ServiceTools.serviceAccepted().put("comments", MessageTools.listComment(id_twist, m).put("idMessage", id_twist));		
+		}catch(SQLException s) {
+			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
+		}catch(JSONException e) {
+			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
 		}finally {
 			if ((!DBStatic.is_pooling) && (co != null))
 				try {

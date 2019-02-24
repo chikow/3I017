@@ -27,10 +27,7 @@ public class FriendTools {
 	 * @return
 	 * @throws SQLException 
 	 */
-	public static boolean alreadyFriend(String key, int id_friend, Connection co) throws SQLException {
-		int id_user = UserTools.getIdFromKey(key, co);
-		if( id_user==0)
-			return false;
+	public static boolean alreadyFriend(int id_user, int id_friend, Connection co) throws SQLException {
 		Statement st = null;
 		ResultSet res = null;
 		st = co.createStatement();
@@ -70,10 +67,7 @@ public class FriendTools {
 		return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+": invitation sent to "+UserTools.getLogin(id_friend), 001);
 	}
 	
-	public static JSONObject listFollowers(String key, Connection co) throws SQLException, JSONException {
-		int id_user = UserTools.getIdFromKey(key, co);
-		if( id_user==0)
-			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
+	public static JSONObject listFollowers(int id_user, Connection co) throws SQLException, JSONException {
 		Statement st = null;
 		ResultSet res = null;
 		st = co.createStatement();
@@ -101,10 +95,7 @@ public class FriendTools {
 	 * @throws SQLException 
 	 * @throws JSONException 
 	 */
-	public static JSONObject unfollow(String key, int id_friend, Connection co) throws SQLException, JSONException {
-		int id_user = UserTools.getIdFromKey(key, co);
-		if( id_user==0)
-			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
+	public static JSONObject unfollow(int id_user, int id_friend, Connection co) throws SQLException, JSONException {
 		Statement st = null;
 		st = co.createStatement();
 		String query = "DELETE FROM follow WHERE user_id1 = '"+id_user+"' AND user_id2 = '"+id_friend+"'";

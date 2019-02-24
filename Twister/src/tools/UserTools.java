@@ -250,8 +250,8 @@ public class UserTools {
 			return id_user;
 	}
 	
-	//public static string getKeyFromId(){retrun null;}
-	
+	public static String getKeyFromId(){return null;}
+	public static int getIdFromLogin(String Login){return 0;}
 }
 	
 

@@ -24,8 +24,9 @@ public class AddMessageTest {
 	 * @throws SQLException 
 	 */
 	public static void main(String[] args) throws SQLException, JSONException {
-		JSONObject obj = AddTwistS.AddTwistS("HTtpisS8qHDUtpQOhhLNKyIaGrAsINFL", "Life is beautiful, enjoy it");
-		System.out.println( obj);
+		//AddTwistS.AddTwist("wVW4dN6JcBLhKCLvSOGnFKWF2MKf6txs", "Give more and Excpect less");
+		JSONObject obj = AddTwistS.listTwists("wVW4dN6JcBLhKCLvSOGnFKWF2MKf6txs", "false", "2");
+		System.out.println(obj);
 	}
 
 }
