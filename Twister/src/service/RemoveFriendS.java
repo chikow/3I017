@@ -20,19 +20,19 @@ import tools.ServiceTools;
  *
  */
 public class RemoveFriendS {
-	public static JSONObject removeFriend(int id_user, int id_friend) {
-		if (id_user== 0)
+	public static JSONObject Unfollow(String key, int id_friend) {
+		if (key==null)
 			return ServiceTools.serviceRefused("Paramètre(s) vide(s)", -1);
 		
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
-		boolean is_friend = FriendTools.alreadyFriend(id_user, id_friend, co);
+		boolean is_friend = FriendTools.alreadyFriend(key, id_friend, co);
 		if (!is_friend) {
 			co.close();
 			return ServiceTools.serviceRefused("Not Friends", -2);
 		}
-		return FriendTools.unfollow(id_user, id_friend, co);
+		return FriendTools.unfollow(key, id_friend, co);
 		}catch(SQLException s){
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
 		}catch(JSONException e){

@@ -35,7 +35,7 @@ public class Data {
 	public static String MESSAGE_INCORRECT_PASSWORD = "Incorrect password.";
 	
 	public static int CODE_USER_NOT_CONNECTED = 10000;
-	public static String MESSAGE_USER_NOT_CONNECTED = "Can't post twist, user not connected";
+	public static String MESSAGE_USER_NOT_CONNECTED = "User not connected";
 	
 	public static int CODE_TWIST_DOES_NOT_EXIST = 10001;
 	public static String MESSAGE_TWIST_DOES_NOT_EXIST = "Twist doesn't exist";

@@ -7,7 +7,7 @@ import service.RemoveCommentS;
 
 public class RemoveCoommentTest {
 	public static void main(String[] args) {
-		JSONObject o = RemoveCommentS.DeleteComment("gH3sTZjvbZvwmpdS6kMVpYdT7ySBNBuf", "5c70532c2708574bf0b7c7e8", "5c705345b5669f2da29f5571");
+		JSONObject o = RemoveCommentS.DeleteComment("HTtpisS8qHDUtpQOhhLNKyIaGrAsINFL", "5c72611b13acf63d1ac10fe1", "5c72618a0b636c3c8fbeaf20");
 		System.out.println(o);
 	}
 }

@@ -24,13 +24,13 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		
 		
 	
-			String id_user = request.getParameter("id_user");
+			String key = request.getParameter("id_user");
 			String id_friend =  request.getParameter("id_friend");
 			
 			response.setContentType("json");
 			PrintWriter out = response.getWriter();
 			
-			out.println(AddFriendS.addFriend(Integer.parseInt(id_user), Integer.parseInt(id_friend)));
+			out.println(AddFriendS.addFriend(key, Integer.parseInt(id_friend)));
 		}
 	
 

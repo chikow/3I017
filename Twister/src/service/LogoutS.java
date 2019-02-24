@@ -18,16 +18,15 @@ import tools.Data;
  *
  */
 public class LogoutS {
-	public static JSONObject logout(String log) {
-		if (log == null) {
+	public static JSONObject logout(String key) {
+		if (key == null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}
 	
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
-			int id_user = UserTools.getIdUser(log, co);
-			return UserTools.removeConnection(id_user, co);
+			return UserTools.removeConnection(key, co);
 		} catch (JSONException | SQLException s) {
 			s.printStackTrace();
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);

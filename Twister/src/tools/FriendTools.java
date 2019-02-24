@@ -7,12 +7,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import db.DBStatic;
-import db.Database;
 
 /**
  * @author LAOUER Walid
@@ -27,7 +27,10 @@ public class FriendTools {
 	 * @return
 	 * @throws SQLException 
 	 */
-	public static boolean alreadyFriend(int id_user, int id_friend, Connection co) throws SQLException {
+	public static boolean alreadyFriend(String key, int id_friend, Connection co) throws SQLException {
+		int id_user = UserTools.getIdFromKey(key, co);
+		if( id_user==0)
+			return false;
 		Statement st = null;
 		ResultSet res = null;
 		st = co.createStatement();
@@ -51,9 +54,13 @@ public class FriendTools {
 	 * @throws JSONException 
 	 * @throws SQLException 
 	 */
-	public static JSONObject insertFriend(int id_user, int id_friend, Connection co) throws JSONException, SQLException {
+	public static JSONObject follow(String key, int id_friend, Connection co) throws JSONException, SQLException {
+		int id_user = UserTools.getIdFromKey(key, co);
+		if( id_user==0)
+			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
 		st = co.createStatement();
+		
 		String query = "INSERT INTO follow (`follow_date`,`user_id1`, `user_id2`) VALUES( NOW(),'"+ id_user + "','" + id_friend + "')";
 		st.executeUpdate(query);
 
@@ -62,7 +69,29 @@ public class FriendTools {
 
 		return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+": invitation sent to "+UserTools.getLogin(id_friend), 001);
 	}
-
+	
+	public static JSONObject listFollowers(String key, Connection co) throws SQLException, JSONException {
+		int id_user = UserTools.getIdFromKey(key, co);
+		if( id_user==0)
+			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
+		Statement st = null;
+		ResultSet res = null;
+		st = co.createStatement();
+		String query = "SELECT user_id1 FROM follow where user_id2 = '"+ id_user+"'";
+		res = st.executeQuery(query);
+//		System.out.println(res.next());
+  		List<JSONObject> array = new ArrayList<JSONObject>();
+//		int follower = res.getInt("user_id1");
+//		JSONObject j = new JSONObject().put(UserTools.getLogin(follower), follower);
+//		array.add(j);
+		while(res.next()) {
+			int follower = res.getInt("user_id1");
+			JSONObject j = new JSONObject().put(UserTools.getLogin(follower), follower);
+			array.add(j);
+		}
+		JSONObject friends = new JSONObject().put("Followers", array); 
+		return friends;
+	}
 
 
 	/**
@@ -72,7 +101,10 @@ public class FriendTools {
 	 * @throws SQLException 
 	 * @throws JSONException 
 	 */
-	public static JSONObject unfollow(int id_user, int id_friend, Connection co) throws SQLException, JSONException {
+	public static JSONObject unfollow(String key, int id_friend, Connection co) throws SQLException, JSONException {
+		int id_user = UserTools.getIdFromKey(key, co);
+		if( id_user==0)
+			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
 		st = co.createStatement();
 		String query = "DELETE FROM follow WHERE user_id1 = '"+id_user+"' AND user_id2 = '"+id_friend+"'";

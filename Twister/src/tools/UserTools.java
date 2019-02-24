@@ -137,15 +137,18 @@ public class UserTools {
 	 * @param key
 	 * @throws JSONException 
 	 */
-	public static JSONObject removeConnection(int user_id, Connection co) throws JSONException, SQLException {
+	public static JSONObject removeConnection(String key, Connection co) throws JSONException, SQLException {
 		// TODO Auto-generated method stub
+		int id_user = UserTools.getIdFromKey(key, co);
+		if( id_user==0)
+			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
 		//int res = null;
 		st = co.createStatement();
-		String query = "DELETE FROM sessions WHERE user_id = '"+user_id+"'";
+		String query = "DELETE FROM sessions WHERE user_id = '"+id_user+"'";
 		st.executeUpdate(query);
 
-		return ServiceTools.serviceAccepted().put(getLogin(user_id)+" Disconnected", 001);
+		return ServiceTools.serviceAccepted().put(getLogin(id_user)+" Disconnected", 001);
 
 	}
 	public static String generatekey() {
@@ -237,11 +240,13 @@ public class UserTools {
 			res = st.executeQuery(query);
 
 			if (res.next()) {
-				System.out.println("il existe bien un resultat");
+				//System.out.println("il existe bien un resultat");
 				id_user = res.getInt("user_id");
 			}
 			res.close();
 			st.close();
+			if(id_user==0)
+				System.out.println("Utilisateur non connecté ");
 			return id_user;
 	}
 	
