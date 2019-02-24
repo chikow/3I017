@@ -39,7 +39,7 @@ public class MessageTools {
 	public static JSONObject postTwist(String key ,String text, MongoCollection<Document> message_collection) throws SQLException, JSONException{
 		Connection co = Database.getMySQLConnection();
 		Document query = new Document();
-		int user_id = UserTools.getIdFromKey(key,co);
+		int user_id = SessionTools.getIdFromKey(key,co);
 		if(user_id ==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		System.out.println("user connected!");
@@ -74,7 +74,7 @@ public class MessageTools {
 	 * @throws SQLException 
 	 */
 	public static JSONObject RemoveTwist(String key, String id_message,Connection conn, MongoCollection<Document> m) throws JSONException, SQLException {
-		int user_id = UserTools.getIdFromKey(key,conn);
+		int user_id = SessionTools.getIdFromKey(key,conn);
 		if(user_id ==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		
@@ -92,15 +92,15 @@ public class MessageTools {
 			m.deleteOne(query);
 		}
 		if(message_exist)
-			return ServiceTools.serviceAccepted().put(UserTools.getLogin(UserTools.getIdFromKey(key, conn))+" twist has been removed successfully", 1);
+			return ServiceTools.serviceAccepted().put(UserTools.getLogin(SessionTools.getIdFromKey(key, conn))+" twist has been removed successfully", 1);
 		else
-			return ServiceTools.serviceAccepted().put(UserTools.getLogin(UserTools.getIdFromKey(key, conn))+" has no twist to remove", 1);
+			return ServiceTools.serviceAccepted().put(UserTools.getLogin(SessionTools.getIdFromKey(key, conn))+" has no twist to remove", 1);
 
 	}
 
 	public static boolean checkAuthor(String key, String id_message, Connection conn, MongoCollection<Document> message_collection) throws SQLException {
 
-		int userID = UserTools.getIdFromKey(key, conn);
+		int userID = SessionTools.getIdFromKey(key, conn);
 		Document query = new Document();
 		query.append("user_id", userID);
 		query.append("_id", new ObjectId(id_message));
@@ -132,7 +132,7 @@ public class MessageTools {
 		comments.put("date", c.getTime());
 
 		Document auteur = new Document();
-		auteur.append("login", UserTools.getLogin(UserTools.getIdFromKey(key, co)));
+		auteur.append("login", UserTools.getLogin(SessionTools.getIdFromKey(key, co)));
 		comments.append("author",auteur);
 		comments.append("content", text);
 		comments.append("idMessage", id_message);

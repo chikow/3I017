@@ -139,7 +139,7 @@ public class UserTools {
 	 */
 	public static JSONObject removeConnection(String key, Connection co) throws JSONException, SQLException {
 		// TODO Auto-generated method stub
-		int id_user = UserTools.getIdFromKey(key, co);
+		int id_user = SessionTools.getIdFromKey(key, co);
 		if( id_user==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
@@ -218,39 +218,6 @@ public class UserTools {
 		}
 	}
 
-	public static JSONArray searchUserByLogin(String login)
-	{
-		//TO DO
-		return new JSONArray();
-	}
-
-
-
-	/**
-	 * @param key
-	 * @return
-	 */
-	public static int getIdFromKey(String key,Connection co) throws SQLException {
-		Statement st = null;
-		ResultSet res = null;
-		int id_user = 0;
-		
-			st = co.createStatement();
-			String query = "SELECT user_id FROM sessions WHERE session_key= \""+key+"\";";
-			res = st.executeQuery(query);
-
-			if (res.next()) {
-				//System.out.println("il existe bien un resultat");
-				id_user = res.getInt("user_id");
-			}
-			res.close();
-			st.close();
-			if(id_user==0)
-				System.out.println("Utilisateur non connecté ");
-			return id_user;
-	}
-	
-	//public static string getKeyFromId(){retrun null;}
 	
 }
 	

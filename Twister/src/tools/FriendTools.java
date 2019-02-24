@@ -28,7 +28,7 @@ public class FriendTools {
 	 * @throws SQLException 
 	 */
 	public static boolean alreadyFriend(String key, int id_friend, Connection co) throws SQLException {
-		int id_user = UserTools.getIdFromKey(key, co);
+		int id_user = SessionTools.getIdFromKey(key, co);
 		if( id_user==0)
 			return false;
 		Statement st = null;
@@ -55,7 +55,7 @@ public class FriendTools {
 	 * @throws SQLException 
 	 */
 	public static JSONObject follow(String key, int id_friend, Connection co) throws JSONException, SQLException {
-		int id_user = UserTools.getIdFromKey(key, co);
+		int id_user = SessionTools.getIdFromKey(key, co);
 		if( id_user==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
@@ -71,7 +71,7 @@ public class FriendTools {
 	}
 	
 	public static JSONObject listFollowers(String key, Connection co) throws SQLException, JSONException {
-		int id_user = UserTools.getIdFromKey(key, co);
+		int id_user = SessionTools.getIdFromKey(key, co);
 		if( id_user==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
@@ -102,7 +102,7 @@ public class FriendTools {
 	 * @throws JSONException 
 	 */
 	public static JSONObject unfollow(String key, int id_friend, Connection co) throws SQLException, JSONException {
-		int id_user = UserTools.getIdFromKey(key, co);
+		int id_user = SessionTools.getIdFromKey(key, co);
 		if( id_user==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
