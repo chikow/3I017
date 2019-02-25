@@ -45,9 +45,17 @@ public class Database {
 	/**
 	 * �tablis une connexion vers notre base de donn�es MySQL.
 	 * @return La connexion MySQL �tablie.
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 * @throws SQLException.
 	 */
-	public static Connection getMySQLConnection() throws SQLException {
+	public static Connection getMySQLConnection() throws SQLException, InstantiationException, IllegalAccessException {
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(!DBStatic.is_pooling){
 			return(DriverManager.getConnection("jdbc:mysql://" + DBStatic.mysql_host + "/" + DBStatic.mysql_db, DBStatic.mysql_username, DBStatic.mysql_password));
 		} else {

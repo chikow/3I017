@@ -43,7 +43,7 @@ public class SessionTools {
 	}
 
 
-	public static void sessionUpdate() {
+	public static void sessionUpdate() throws InstantiationException, IllegalAccessException {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis() - 1800000);
 		//30 * 60 * 1000 = 1800000ms  -> 30min
 		try {

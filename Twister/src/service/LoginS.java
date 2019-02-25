@@ -18,10 +18,10 @@ import tools.UserTools;
  */
 public class LoginS {
 
-	public static JSONObject login(String log, String mdp) {
+	public static JSONObject login(String log, String mdp) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		if ((log == null) || (mdp == null)) 
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
-
+		
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
@@ -42,6 +42,7 @@ public class LoginS {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_ALREADY_CONNECTED, Data.CODE_USER_ALREADY_CONNECTED);	
 			}
+			
 			return UserTools.insertConnexion(log, mdp, co);
 			} catch (SQLException s) {
 				s.printStackTrace();
@@ -58,6 +59,9 @@ public class LoginS {
 				}
 		}
 	}
+	
+	
+	
 }
 
 

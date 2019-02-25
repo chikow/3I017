@@ -5,9 +5,6 @@ import java.sql.SQLException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.sun.corba.se.impl.ior.FreezableList;
-
 import db.Database;
 import service.AddFriendS;
 import service.RemoveFriendS;
