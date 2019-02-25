@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import service.AddCommentS;
 import service.AddTwistS;
 import service.LoginS;
 import tools.UserTools;
@@ -26,8 +27,9 @@ public class AddMessageTest {
 	 * @throws InstantiationException 
 	 */
 	public static void main(String[] args) throws SQLException, JSONException, InstantiationException, IllegalAccessException {
-		//AddTwistS.AddTwist("wVW4dN6JcBLhKCLvSOGnFKWF2MKf6txs", "Give more and Excpect less");
-		JSONObject obj = AddTwistS.listTwists("wVW4dN6JcBLhKCLvSOGnFKWF2MKf6txs", "false", "2");
+		//JSONObject obj = AddTwistS.AddTwist("ZC2ggG3SW3mOMxZVUe33hNkIdPj40S3p", "Message 1");
+		//JSONObject obj = AddTwistS.listTwists("ZC2ggG3SW3mOMxZVUe33hNkIdPj40S3p", "false", "4");
+		JSONObject obj = AddCommentS.listComments("IrqtChL3yiN4O0PAB6ZPs7clplfTfZAf", "5c746125f9d3f5613bf66a20");
 		System.out.println(obj);
 	}
 

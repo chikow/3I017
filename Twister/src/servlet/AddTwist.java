@@ -11,27 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.AddCommentS;
+import service.AddTwistS;
 
 /**
  * @author LAOUER Walid
  *
  */
-public class AddComment extends HttpServlet{
+public class AddTwist extends HttpServlet{
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			
 			
 				String key = request.getParameter("key");
-				String id_message =  request.getParameter("id_message");
+				//String id_message =  request.getParameter("id_message");
 				String text = request.getParameter("text");
 				
 				response.setContentType("text/plain");
 				PrintWriter out = response.getWriter();
 				
 				try {
-					out.println(AddCommentS.postComment(key, id_message, text));
+					out.println(AddTwistS.AddTwist(key, text).toString());
 				} catch (InstantiationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import service.AddCommentS;
 import service.AddTwistS;
 import service.LoginS;
-import servlet.AddComment;
+import servlet.AddTwist;
 import tools.UserTools;
 
 public class TestComment {
@@ -18,11 +18,14 @@ public class TestComment {
 //		JSONObject obj = AddTwistS.AddTwistS("7uocJsq4SBLqnToWn38pwTYzvFdbibpe", UserTools.generatekey());
 //		System.out.println( obj);
 		
-		JSONObject o = AddCommentS.postComment("beh09aiclV3gH8DE6Z8Xp4yfxAN0dGaO", "5c72611b13acf63d1ac10fe1", "I like this post");
-		System.out.println(o);
-
-		JSONObject ob = AddCommentS.postComment("p7OxPwaydulGINckYSBWI6naJW3rlSQ5", "5c72611b13acf63d1ac10fe1", "!(Tech web is amazing)");
-		System.out.println(ob);
+//		JSONObject o = AddCommentS.postComment("ZC2ggG3SW3mOMxZVUe33hNkIdPj40S3p", "5c746125f9d3f5613bf66a20", "I like this post");
+//		System.out.println(o);
+//
+//		JSONObject ob = AddCommentS.postComment("ZC2ggG3SW3mOMxZVUe33hNkIdPj40S3p", "5c746125f9d3f5613bf66a20", "!(Tech web is amazing)");
+//		System.out.println(ob);
+		
+		JSONObject obj = AddCommentS.listComments("IrqtChL3yiN4O0PAB6ZPs7clplfTfZAf", "5c746125f9d3f5613bf66a20");
+		System.out.println(obj);
 		
 	}
 

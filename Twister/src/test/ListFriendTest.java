@@ -8,7 +8,7 @@ public class ListFriendTest {
 
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub
-		JSONObject o3 = AddFriendS.listFollowers("p7OxPwaydulGINckYSBWI6naJW3rlSQ5");
+		JSONObject o3 = AddFriendS.listFollowers("ZC2ggG3SW3mOMxZVUe33hNkIdPj40S3p");
 		System.out.println(o3);
 	}
 

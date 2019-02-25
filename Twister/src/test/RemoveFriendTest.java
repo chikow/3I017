@@ -16,7 +16,7 @@ public class RemoveFriendTest {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub
 
-		JSONObject o = RemoveFriendS.Unfollow("HTtpisS8qHDUtpQOhhLNKyIaGrAsINFL", 10);
+		JSONObject o = RemoveFriendS.Unfollow("IrqtChL3yiN4O0PAB6ZPs7clplfTfZAf", 9);
 		System.out.println(o);
 
 	}

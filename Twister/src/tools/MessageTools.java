@@ -36,10 +36,12 @@ public class MessageTools {
 	 * @param key
 	 * @param text
 	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
 
 
-	public static JSONObject postTwist(int id_user ,String text, MongoCollection<Document> message_collection) throws SQLException, JSONException{
+	public static JSONObject postTwist(int id_user ,String text, MongoCollection<Document> message_collection) throws SQLException, JSONException, InstantiationException, IllegalAccessException{
 		Connection co = Database.getMySQLConnection();
 		Document query = new Document();
 
