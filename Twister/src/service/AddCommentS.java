@@ -24,7 +24,7 @@ import tools.UserTools;
  *
  */
 public class AddCommentS {
-	public static JSONObject postComment(String key, String id_message, String text) {
+	public static JSONObject postComment(String key, String id_message, String text) throws InstantiationException, IllegalAccessException {
 		if(key == null || text==null || id_message==null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}
@@ -61,7 +61,7 @@ public class AddCommentS {
 
 	}
 
-	public static JSONObject listComments(String key, String id_twist)
+	public static JSONObject listComments(String key, String id_twist) throws InstantiationException, IllegalAccessException
 	{
 		if(key == null || id_twist == null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);

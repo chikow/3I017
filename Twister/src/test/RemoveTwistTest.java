@@ -19,8 +19,10 @@ public class RemoveTwistTest {
 	 * @param args
 	 * @throws JSONException 
 	 * @throws SQLException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public static void main(String[] args) throws SQLException, JSONException {
+	public static void main(String[] args) throws SQLException, JSONException, InstantiationException, IllegalAccessException {
 
 		JSONObject obj = RemoveTwistS.RemoveTwist("HTtpisS8qHDUtpQOhhLNKyIaGrAsINFL", "5c70532c2708574bf0b7c7e8");
 		System.out.println( obj);

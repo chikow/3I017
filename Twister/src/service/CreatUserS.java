@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class CreatUserS {
 	
-	public static JSONObject createUser(String login, String nom, String prenom, String mail, String mdp) {
+	public static JSONObject createUser(String login, String nom, String prenom, String mail, String mdp) throws InstantiationException, IllegalAccessException {
 		if (nom == null || prenom == null || mail == null || login == null || mdp == null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}

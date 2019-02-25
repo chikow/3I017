@@ -18,7 +18,7 @@ import service.RemoveFriendS;
  *
  */
 public class RemoveFriend {
-public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException, InstantiationException, IllegalAccessException {
 		
 		
 			String key = request.getParameter("id_user");

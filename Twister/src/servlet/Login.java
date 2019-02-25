@@ -18,10 +18,7 @@ import service.LoginS;
  */
 public class Login extends HttpServlet{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -29,7 +26,19 @@ public class Login extends HttpServlet{
 		String login =  request.getParameter("login");
 		String mdp = request.getParameter("mdp");
 		
-		JSONObject json = LoginS.login(login, mdp);
+		JSONObject json=null;
+		try {
+			json = LoginS.login(login, mdp);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		response.setContentType("json");
 		PrintWriter out = response.getWriter();
 		

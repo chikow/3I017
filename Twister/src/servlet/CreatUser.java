@@ -28,7 +28,15 @@ public class CreatUser extends HttpServlet{
 			response.setContentType("json");
 			PrintWriter out = response.getWriter();
 			
-			out.println(CreatUserS.createUser(nom, prenom, mail, login, mdp));
+			try {
+				out.println(CreatUserS.createUser(nom, prenom, mail, login, mdp));
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

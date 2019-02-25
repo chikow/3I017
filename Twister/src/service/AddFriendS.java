@@ -21,7 +21,7 @@ import tools.UserTools;
  *
  */
 public class AddFriendS {
-	public static JSONObject addFriend(String key, int id_friend) {
+	public static JSONObject addFriend(String key, int id_friend) throws InstantiationException, IllegalAccessException {
 		if (key == null || id_friend==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		Connection co=null;
@@ -55,7 +55,7 @@ public class AddFriendS {
 		}
 	}
 
-	public static JSONObject listFollowers(String key) {
+	public static JSONObject listFollowers(String key) throws InstantiationException, IllegalAccessException {
 		if(key ==null)
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		Connection co=null;

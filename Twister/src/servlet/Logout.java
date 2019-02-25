@@ -26,7 +26,15 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			
 			response.setContentType("json");
 			PrintWriter out = response.getWriter();
-			out.println(LogoutS.logout(key));
+			try {
+				out.println(LogoutS.logout(key));
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	
 

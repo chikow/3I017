@@ -30,7 +30,18 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			response.setContentType("json");
 			PrintWriter out = response.getWriter();
 			
-			out.println(AddFriendS.addFriend(key, Integer.parseInt(id_friend)));
+			try {
+				out.println(AddFriendS.addFriend(key, Integer.parseInt(id_friend)));
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	
 

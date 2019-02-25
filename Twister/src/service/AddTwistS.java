@@ -25,7 +25,7 @@ import tools.UserTools;
  *
  */
 public class AddTwistS {
-	public static JSONObject AddTwist(String key, String text){
+	public static JSONObject AddTwist(String key, String text) throws InstantiationException, IllegalAccessException{
 		if(key == null || text==null ) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 
@@ -60,7 +60,7 @@ public class AddTwistS {
 
 	}
 
-	public static JSONObject listTwists(String key, String orderAsc, String nbTwist) {
+	public static JSONObject listTwists(String key, String orderAsc, String nbTwist) throws InstantiationException, IllegalAccessException {
 		if(key==null || nbTwist == null)
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		MongoCollection<Document> m = Database.getMongoMessage();
@@ -73,7 +73,7 @@ public class AddTwistS {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}
-			//Si il précise pas d'ordre, ordre croissant
+			//Si il prï¿½cise pas d'ordre, ordre croissant
 			boolean ord;
 			if (orderAsc == null)
 				ord = false;

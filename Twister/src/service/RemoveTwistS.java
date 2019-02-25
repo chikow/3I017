@@ -24,7 +24,7 @@ import tools.UserTools;
  *
  */
 public class RemoveTwistS {
-	public static JSONObject RemoveTwist(String key,String tweet_id)  {
+	public static JSONObject RemoveTwist(String key,String tweet_id) throws InstantiationException, IllegalAccessException  {
 		if(key == null || tweet_id==null ) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 

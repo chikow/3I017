@@ -18,14 +18,7 @@ import service.AddTwistS;
  *
  */
 public class AddComment extends HttpServlet{
-<<<<<<< HEAD
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-=======
->>>>>>> branch 'master' of https://github.com/chikow/3I017.git
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			
@@ -37,7 +30,15 @@ public class AddComment extends HttpServlet{
 				response.setContentType("text/plain");
 				PrintWriter out = response.getWriter();
 				
-				out.println(AddTwistS.AddTwist(key, text).toString());
+				try {
+					out.println(AddTwistS.AddTwist(key, text).toString());
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 	
 

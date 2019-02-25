@@ -13,7 +13,7 @@ import tools.UserTools;
 
 public class RemoveFriendTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub
 
 		JSONObject o = RemoveFriendS.Unfollow("HTtpisS8qHDUtpQOhhLNKyIaGrAsINFL", 10);

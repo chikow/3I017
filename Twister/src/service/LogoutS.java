@@ -18,7 +18,7 @@ import tools.UserTools;
  *
  */
 public class LogoutS {
-	public static JSONObject logout(String key) {
+	public static JSONObject logout(String key) throws InstantiationException, IllegalAccessException {
 		if (key == null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}

@@ -20,7 +20,7 @@ import tools.UserTools;
 public class CreateUserTest {
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 
 
 		JSONObject obj = CreatUserS.createUser("Delpax","del", "Pax", "Delpax@gmail.com", "1234");
@@ -28,7 +28,7 @@ public class CreateUserTest {
 		System.out.println("heeeeey");
 		
 
-		//Pour tester les methodes UserTools faut établire la connextion au niveau du main
+		//Pour tester les methodes UserTools faut ï¿½tablire la connextion au niveau du main
 		Connection c =null;
 		try {
 			c = Database.getMySQLConnection();

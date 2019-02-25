@@ -22,7 +22,7 @@ public class RemoveCommentS {
 		
 	}
 	
-	public static JSONObject DeleteComment(String key, String id_message, String id_comment) {
+	public static JSONObject DeleteComment(String key, String id_message, String id_comment) throws InstantiationException, IllegalAccessException {
 		if(key==null || id_message==null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}

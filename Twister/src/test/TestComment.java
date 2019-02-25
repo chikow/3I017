@@ -13,7 +13,7 @@ import tools.UserTools;
 
 public class TestComment {
 
-	public static void main(String[] args) throws SQLException, JSONException {
+	public static void main(String[] args) throws SQLException, JSONException, InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub
 //		JSONObject obj = AddTwistS.AddTwistS("7uocJsq4SBLqnToWn38pwTYzvFdbibpe", UserTools.generatekey());
 //		System.out.println( obj);

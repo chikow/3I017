@@ -21,7 +21,7 @@ import tools.UserTools;
  *
  */
 public class RemoveFriendS {
-	public static JSONObject Unfollow(String key, int id_friend) {
+	public static JSONObject Unfollow(String key, int id_friend) throws InstantiationException, IllegalAccessException {
 		if (key==null)
 			return ServiceTools.serviceRefused("Paramètre(s) vide(s)", -1);
 		
