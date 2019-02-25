@@ -218,7 +218,6 @@ public class UserTools {
 		}
 	}
 
-<<<<<<< HEAD
 	public static JSONArray searchUserByLogin(String login)
 	{
 		//TO DO
@@ -247,16 +246,12 @@ public class UserTools {
 			res.close();
 			st.close();
 			if(id_user==0)
-				System.out.println("Utilisateur non connecté ");
+				System.out.println("Utilisateur non connectï¿½ ");
 			return id_user;
 	}
 	
-	public static String getKeyFromId(){return null;}
-	public static int getIdFromLogin(String Login){return 0;}
-=======
-	
->>>>>>> branch 'master' of https://github.com/chikow/3I017.git
 }
+
 	
 
 
