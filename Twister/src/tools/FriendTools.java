@@ -52,7 +52,7 @@ public class FriendTools {
 	 * @throws SQLException 
 	 */
 	public static JSONObject follow(String key, int id_friend, Connection co) throws JSONException, SQLException {
-		int id_user = UserTools.getIdFromKey(key, co);
+		int id_user = SessionTools.getIdFromKey(key, co);
 		if( id_user==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;

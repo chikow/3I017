@@ -132,59 +132,7 @@ public class UserTools {
 
 		return false;
 	}
-
-	/**
-	 * @param key
-	 * @throws JSONException 
-	 */
-	public static JSONObject removeConnection(String key, Connection co) throws JSONException, SQLException {
-		// TODO Auto-generated method stub
-		int id_user = SessionTools.getIdFromKey(key, co);
-		if( id_user==0)
-			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
-		Statement st = null;
-		//int res = null;
-		st = co.createStatement();
-		String query = "DELETE FROM sessions WHERE user_id = '"+id_user+"'";
-		st.executeUpdate(query);
-
-		return ServiceTools.serviceAccepted().put(getLogin(id_user)+" Disconnected", 001);
-
-	}
-	public static String generatekey() {
-		String chars = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
-		String key = "";
-		for (int i=0; i<32; i++) {
-			int r = new Random().nextInt(chars.length());
-			key += chars.charAt(r);
-		}
-		return key;
-	}
-
-	/**
-	 * @param log
-	 * @param mdp
-	 * @param co 
-	 * @return
-	 * @throws JSONException 
-	 * @throws SQLException 
-	 */
-	public static JSONObject insertConnexion(String log, String mdp, Connection co) throws JSONException, SQLException {
-		Statement st = null;
-		String key = generatekey();
-
-
-		st = co.createStatement();
-		String query = "INSERT INTO sessions (`user_id`, `session_key`) VALUES('" + getIdUser(log, co) + "','" + key + "')";
-		st.executeUpdate(query);
-
-
-		st.close();
-
-
-		return ServiceTools.serviceAccepted().put(log+" signed in", 001);
-	}
-
+	
 	public static String getLogin(int id) {
 		Connection co = null;
 		Statement st = null;
@@ -226,30 +174,7 @@ public class UserTools {
 
 
 
-	/**
-	 * @param key
-	 * @return
-	 */
-	public static int getIdFromKey(String key,Connection co) throws SQLException {
-		Statement st = null;
-		ResultSet res = null;
-		int id_user = 0;
-		
-			st = co.createStatement();
-			String query = "SELECT user_id FROM sessions WHERE session_key= \""+key+"\";";
-			res = st.executeQuery(query);
 
-			if (res.next()) {
-				//System.out.println("il existe bien un resultat");
-				id_user = res.getInt("user_id");
-			}
-			res.close();
-			st.close();
-			if(id_user==0)
-				System.out.println("Utilisateur non connect� ");
-			return id_user;
-	}
-	
 }
 
 	

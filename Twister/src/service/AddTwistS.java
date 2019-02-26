@@ -18,6 +18,7 @@ import db.Database;
 import tools.Data;
 import tools.MessageTools;
 import tools.ServiceTools;
+import tools.SessionTools;
 import tools.UserTools;
 
 /**
@@ -35,8 +36,9 @@ public class AddTwistS {
 		try {
 			co = Database.getMySQLConnection();
 
-			int id_user = UserTools.getIdFromKey(key, co);
-			if( id_user==0) {
+			int id_user = SessionTools.getIdFromKey(key, co);
+			boolean b = SessionTools.isConnected(key);
+			if(!b) {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}
@@ -68,8 +70,9 @@ public class AddTwistS {
 		try {
 			co = Database.getMySQLConnection();
 
-			int id_user = UserTools.getIdFromKey(key, co);
-			if( id_user==0) {
+			int id_user = SessionTools.getIdFromKey(key, co);
+			boolean b = SessionTools.isConnected(key);
+			if(!b) {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}

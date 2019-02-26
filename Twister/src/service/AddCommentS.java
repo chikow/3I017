@@ -17,6 +17,7 @@ import db.Database;
 import tools.Data;
 import tools.MessageTools;
 import tools.ServiceTools;
+import tools.SessionTools;
 import tools.UserTools;
 
 /**
@@ -32,8 +33,9 @@ public class AddCommentS {
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
-			int id =UserTools.getIdFromKey(key, co);
-			if(id==0) {
+			int id =SessionTools.getIdFromKey(key, co);
+			boolean b = SessionTools.isConnected(key);
+			if(!b) {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}
@@ -70,8 +72,8 @@ public class AddCommentS {
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
-			int id =UserTools.getIdFromKey(key, co);
-			if(id==0) {
+			boolean b = SessionTools.isConnected(key);
+			if(!b) {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}

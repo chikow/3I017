@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import db.Database;
 import tools.Data;
 import tools.ServiceTools;
+import tools.SessionTools;
 import tools.UserTools;
 /**
  * @author LAOUER Walid
@@ -19,14 +20,21 @@ import tools.UserTools;
  */
 public class LogoutS {
 	public static JSONObject logout(String key) throws InstantiationException, IllegalAccessException {
+		
 		if (key == null) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
 		}
+		
 	
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
-			return UserTools.removeConnection(key, co);
+			boolean b = SessionTools.isConnected(key);
+			if(!b) {
+				co.close();
+				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
+			}
+			return SessionTools.removeConnection(key, co);
 		} catch (JSONException | SQLException s) {
 			s.printStackTrace();
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);

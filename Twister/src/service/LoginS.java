@@ -10,6 +10,7 @@ import db.DBStatic;
 import db.Database;
 import tools.Data;
 import tools.ServiceTools;
+import tools.SessionTools;
 import tools.UserTools;
 
 /**
@@ -43,7 +44,7 @@ public class LoginS {
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_ALREADY_CONNECTED, Data.CODE_USER_ALREADY_CONNECTED);	
 			}
 			
-			return UserTools.insertConnexion(log, mdp, co);
+			return SessionTools.insertConnexion(log, mdp, co);
 			} catch (SQLException s) {
 				s.printStackTrace();
 				return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);

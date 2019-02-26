@@ -27,9 +27,9 @@ public class AddMessageTest {
 	 * @throws InstantiationException 
 	 */
 	public static void main(String[] args) throws SQLException, JSONException, InstantiationException, IllegalAccessException {
-		//JSONObject obj = AddTwistS.AddTwist("ZC2ggG3SW3mOMxZVUe33hNkIdPj40S3p", "Message 1");
+		JSONObject obj = AddTwistS.AddTwist("Pz6DCfX2sPMbG2A51chMVA7nscDrtZkG", "Message 1");
 		//JSONObject obj = AddTwistS.listTwists("ZC2ggG3SW3mOMxZVUe33hNkIdPj40S3p", "false", "4");
-		JSONObject obj = AddCommentS.listComments("IrqtChL3yiN4O0PAB6ZPs7clplfTfZAf", "5c746125f9d3f5613bf66a20");
+		//JSONObject obj = AddCommentS.listComments("IrqtChL3yiN4O0PAB6ZPs7clplfTfZAf", "5c746125f9d3f5613bf66a20");
 		System.out.println(obj);
 	}
 
