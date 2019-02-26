@@ -16,6 +16,6 @@ public class LoginTest {
 	//	System.out.println( obj);
 	//System.out.println(o);
 		
-		//SessionTools.isConnection("N672hvkF9vyhYMVjdUMVZA2UWXnriV4S");
+		System.out.println("L'utilisateur est-il toujours connecté ? "+SessionTools.isConnected("236Y3kSj2apuTFYgDKkLY1Ch5ao3Hicg"));
 	}
 }
