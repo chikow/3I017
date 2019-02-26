@@ -11,7 +11,7 @@ import service.RemoveFriendS;
 import tools.FriendTools;
 import tools.UserTools;
 
-public class RemoveFriendTest {
+public class Unfollow {
 
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub

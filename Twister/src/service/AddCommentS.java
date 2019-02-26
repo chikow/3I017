@@ -77,7 +77,7 @@ public class AddCommentS {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}
-			return ServiceTools.serviceAccepted().put("comments", MessageTools.listComment(id_twist, m).put("idMessage", id_twist));		
+			return MessageTools.listComment(id_twist, m);		
 		}catch(SQLException s) {
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
 		}catch(JSONException e) {

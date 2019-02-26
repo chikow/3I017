@@ -95,7 +95,7 @@ public class SessionTools {
 			{
 				Timestamp tempsSession = rs.getTimestamp(1);
 				Timestamp maintenant = new Timestamp(new GregorianCalendar().getTimeInMillis());
-				if((maintenant.getTime() - tempsSession.getTime()) >= 360000)
+				if((maintenant.getTime() - tempsSession.getTime()) >= 3600000)
 				{
 					if (!root(key))
 					{

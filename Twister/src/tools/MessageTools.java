@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.bson.types.BasicBSONList;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -130,9 +132,9 @@ public class MessageTools {
 
 		comments.put("date", c.getTime());
 
-		Document auteur = new Document();
-		auteur.append("login", UserTools.getLogin(id_user));
-		comments.append("author",auteur);
+		//Document auteur = new Document();
+		//auteur.append("login", UserTools.getLogin(id_user));
+		comments.append("author",UserTools.getLogin(id_user));
 		comments.append("content", text);
 		comments.append("idMessage", id_message);
 
@@ -243,22 +245,35 @@ public class MessageTools {
 		}
 	}
 
-	public static BasicDBList listComment(String id_twist, MongoCollection<Document> message_collection) {
-		Document query = new Document("_id", new ObjectId(id_twist));
-		FindIterable<Document> fi = message_collection.find(query);
+	public static JSONObject listComment(String id_twist, MongoCollection<Document> message_collection) throws JSONException {
+		Document filter = new Document("_id", new ObjectId(id_twist));
+		FindIterable<Document> fi = message_collection.find(filter);
 		MongoCursor<Document> cursor = fi.iterator();
-		try
-		{
-			Document comment = cursor.next();
-			//Document recup = new Document("comments", new Document());
-			return   (BasicDBList) comment.get("Comments");
+		Document twist = cursor.next();
+		ArrayList<Document> list_comment= (ArrayList<Document>) twist.get("comments");
+		Iterator<Document> cur = list_comment.iterator();
+		List<JSONObject> l = new ArrayList<JSONObject>();
+		
+		while(cur.hasNext())
+		{	
+			JSONObject json = new JSONObject();
+			Document comment = cur.next();
+			//System.out.print("heeere");
+
+			json.put("id_comments", comment.get("_id"));
+			json.put("date", comment.get("date"));
+			json.put("author", comment.get("author"));
+			json.put("content", comment.get("content"));
+			//while(cursor.next()) {
+			l.add(json);
 		}
-		catch(Exception e)
-		{
-			System.err.println("listComment : " + e.getMessage());
-			return null;
+		//System.out.print("heeere");
+
+		JSONObject res = new JSONObject();
+		res.put("Comments",l);
+		return res;
 		}
-	}
+	
 }
 
 
