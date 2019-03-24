@@ -8,10 +8,7 @@ import java.sql.SQLException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import service.AddCommentS;
-import service.AddTwistS;
-import service.LoginS;
-import tools.UserTools;
+import service.twist.AddTwistS;
 
 /**
  * @author LAOUER Walid
@@ -27,7 +24,7 @@ public class AddTwistTest {
 	 * @throws InstantiationException 
 	 */
 	public static void main(String[] args) throws SQLException, JSONException, InstantiationException, IllegalAccessException {
-		JSONObject obj = AddTwistS.AddTwist("x36mHm0DTnciwuLEffkGyZrtR6QthzA7", "Message 1");
+		JSONObject obj = AddTwistS.AddTwist("5gfg4dFe80BpqrPFsH8hYuIO65Lmmq76", "MESSAAGE");
 		
 		System.out.println(obj);
 	}

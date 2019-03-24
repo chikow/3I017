@@ -1,7 +1,7 @@
 /**
  * 
  */
-package service;
+package service.follows;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,13 +31,14 @@ public class RemoveFriendS {
 			co = Database.getMySQLConnection();
 			int id_user = SessionTools.getIdFromKey(key, co);
 			boolean b = SessionTools.isConnected(key);
+			System.out.println(b);
 			if(!b) {
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}
 		boolean is_friend = FriendTools.alreadyFriend(id_user, id_friend, co);
 		if (!is_friend) {
 			co.close();
-			return ServiceTools.serviceRefused("Not Friends", -2);
+			return ServiceTools.serviceRefused("Can't unfollow", -2);
 		}
 		return FriendTools.unfollow(id_user, id_friend, co);
 		}catch(SQLException s){

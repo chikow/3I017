@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,6 +52,7 @@ public class FriendTools {
 	 */
 	public static JSONObject follow(String key, int id_friend, Connection co) throws JSONException, SQLException {
 		int id_user = SessionTools.getIdFromKey(key, co);
+		System.out.println(id_user);
 		if( id_user==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
@@ -64,7 +64,7 @@ public class FriendTools {
 		st.close();
 
 
-		return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+": invitation sent to "+UserTools.getLogin(id_friend), 001);
+		return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+": just followed "+UserTools.getLogin(id_friend), 001);
 	}
 	
 	public static JSONObject listFollowers(int id_user, Connection co) throws SQLException, JSONException {
@@ -101,7 +101,7 @@ public class FriendTools {
 		String query = "DELETE FROM follow WHERE user_id1 = '"+id_user+"' AND user_id2 = '"+id_friend+"'";
 		st.executeUpdate(query);
 		st.close();
-		return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+" has unfollow "+UserTools.getLogin(id_friend), 1);
+		return ServiceTools.serviceAccepted().put(UserTools.getLogin(id_user)+" has unfollowed "+UserTools.getLogin(id_friend), 1);
 	}
 
 }

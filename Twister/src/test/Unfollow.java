@@ -1,22 +1,15 @@
 package test;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-import db.Database;
-import service.AddFriendS;
-import service.RemoveFriendS;
-import tools.FriendTools;
-import tools.UserTools;
+
+import service.follows.RemoveFriendS;
 
 public class Unfollow {
 
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub
 
-		JSONObject o = RemoveFriendS.Unfollow("IrqtChL3yiN4O0PAB6ZPs7clplfTfZAf", 9);
+		JSONObject o = RemoveFriendS.Unfollow("T5UDpNSvGMXbmWZ3jLeDedBVDPtMdzL4", 9);
 		System.out.println(o);
 
 	}

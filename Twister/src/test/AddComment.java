@@ -5,11 +5,7 @@ import java.sql.SQLException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import service.AddCommentS;
-import service.AddTwistS;
-import service.LoginS;
-import servlet.AddTwist;
-import tools.UserTools;
+import service.comments.AddCommentS;
 
 public class AddComment {
 
@@ -17,7 +13,7 @@ public class AddComment {
 		// TODO Auto-generated method stub
 
 		
-	JSONObject o = AddCommentS.postComment("ZC2ggG3SW3mOMxZVUe33hNkIdPj40S3p", "5c746125f9d3f5613bf66a20", "I like this post");
+	JSONObject o = AddCommentS.postComment("CQPvKBRmyXsRYHrqZ6P0yLHT6y3y6WPu", "5c751d64d131316d05c87603", "my message :BPGM of all times");
 	System.out.println(o);
 
 		

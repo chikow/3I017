@@ -1,4 +1,7 @@
-package service;
+package service.user;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,8 +11,6 @@ import db.Database;
 import tools.Data;
 import tools.ServiceTools;
 import tools.UserTools;
-import java.sql.Connection;
-import java.sql.SQLException;
 /**
  * @author LAOUER Walid
  *
@@ -31,7 +32,7 @@ public class CreatUserS {
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_ALREADY_EXISTS, Data.CODE_USER_ALREADY_EXISTS);
 		}
 		
-		if (UserTools.mailExist(mail, co)) {
+		if (UserTools.mailExists(mail, co)) {
 			co.close();
 			return ServiceTools.serviceRefused(Data.MESSAGE_MAIL_ALREADY_EXISTS, Data.CODE_MAIL_ALREADY_EXISTS);
 		}

@@ -4,7 +4,6 @@
 package tools;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,7 +21,7 @@ import db.Database;
  *
  */
 public class SessionTools {
-	
+
 	/**
 	 * @param log
 	 * @param mdp
@@ -46,7 +45,7 @@ public class SessionTools {
 
 		return ServiceTools.serviceAccepted().put(log+" signed in", 001);
 	}
-	
+
 	public static String generatekey() {
 		String chars = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
 		String key = "";
@@ -56,7 +55,7 @@ public class SessionTools {
 		}
 		return key;
 	}
-	
+
 
 	/**
 	 * @param key
@@ -95,11 +94,13 @@ public class SessionTools {
 			{
 				Timestamp tempsSession = rs.getTimestamp(1);
 				Timestamp maintenant = new Timestamp(new GregorianCalendar().getTimeInMillis());
-				if((maintenant.getTime() - tempsSession.getTime()) >= 3600000)
+//				System.out.println(maintenant.getTime());
+//				System.out.println(tempsSession.getTime());
+				if((maintenant.getTime() - tempsSession.getTime()) >= 4500000)
 				{
 					if (!root(key))
 					{
-						System.out.println(!root(key));
+						//System.out.println(root(key));
 						removeConnection(key,c);
 						return false;
 					}
@@ -130,7 +131,7 @@ public class SessionTools {
 	public static JSONObject removeConnection(String key, Connection co) throws JSONException, SQLException {
 		// TODO Auto-generated method stub
 		int id_user = SessionTools.getIdFromKey(key, co);
-		if( id_user==0)
+		if(id_user==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 		Statement st = null;
 		//int res = null;
@@ -188,5 +189,5 @@ public class SessionTools {
 			return false;
 		}
 
-	}
+	} 
 }

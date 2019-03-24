@@ -4,7 +4,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Random;
+import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,9 +45,9 @@ public class UserTools {
 
 	}
 
-	
-	
-	public static boolean mailExist(String mail, Connection co) throws SQLException {
+
+
+	public static boolean mailExists(String mail, Connection co) throws SQLException {
 		Statement st = null;
 		ResultSet res = null;
 
@@ -132,7 +139,7 @@ public class UserTools {
 
 		return false;
 	}
-	
+
 	public static String getLogin(int id) {
 		Connection co = null;
 		Statement st = null;
@@ -174,10 +181,66 @@ public class UserTools {
 
 
 
+	public static JSONObject sendPasswordRecovery(String mail, Connection co) throws SQLException, JSONException {
+		Statement st = null;
+		ResultSet res = null;
+
+		st = co.createStatement();
+		String query = "SELECT user_password from users where user_mail = '"+ mail + "'";
+		st= co.createStatement();
+		res = st.executeQuery(query);
+
+		//JSONObject o = new JSONObject();
+		if(res.next()) {
+			try {
+				String password =res.getString("user_password");
+				String host ="smtp.gmail.com" ;
+				String user = Data.MAIL_ADDRESS;
+				String pass = Data.MAIL_PASSWORD;
+				String to = mail;
+				String from = Data.MAIL_ADDRESS;
+				String subject = "This is confirmation email for your Twister account. Please insert this password to activate your account.";
+				String messageText = "Twister account password :"+password;
+				boolean sessionDebug = false;
+
+				Properties props = System.getProperties();
+
+				props.put("mail.smtp.starttls.enable", "true");
+				props.put("mail.smtp.host", host);
+				props.put("mail.smtp.port", "587");
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.starttls.required", "true");
+
+				java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+				Session mailSession = Session.getDefaultInstance(props, null);
+				mailSession.setDebug(sessionDebug);
+				Message msg = new MimeMessage(mailSession);
+				msg.setFrom(new InternetAddress(from));
+				InternetAddress[] address = {new InternetAddress(to)};
+				msg.setRecipients(Message.RecipientType.TO, address);
+				msg.setSubject(subject); msg.setSentDate(new Date());
+				msg.setText(messageText);
+
+				Transport transport=mailSession.getTransport("smtp");
+				transport.connect(host, user, pass);
+				transport.sendMessage(msg, msg.getAllRecipients());
+				transport.close();
+				System.out.println("message send successfully");
+			}catch(Exception ex)
+			{
+				System.out.println(ex);
+			}
+
+		}
+		return ServiceTools.serviceAccepted().put("message send successfully", 1);
+	}
+
+
+
 
 }
 
-	
+
 
 
 

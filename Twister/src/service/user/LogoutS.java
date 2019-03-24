@@ -1,7 +1,7 @@
 /**
  * 
  */
-package service;
+package service.user;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +13,6 @@ import db.Database;
 import tools.Data;
 import tools.ServiceTools;
 import tools.SessionTools;
-import tools.UserTools;
 /**
  * @author LAOUER Walid
  *
@@ -30,11 +29,12 @@ public class LogoutS {
 		try {
 			co = Database.getMySQLConnection();
 			boolean b = SessionTools.isConnected(key);
-			if(!b) {
+			System.out.println(b);
+			if(b==false) {
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
-			}
-			return SessionTools.removeConnection(key, co);
+			}else
+				return SessionTools.removeConnection(key, co);
 		} catch (JSONException | SQLException s) {
 			s.printStackTrace();
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);

@@ -6,7 +6,6 @@ package tools;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -14,18 +13,14 @@ import java.util.List;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.bson.types.BasicBSONList;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mongodb.BasicDBList;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-
-import db.Database;
 
 /**
  * @author LAOUER Walid
@@ -44,7 +39,6 @@ public class MessageTools {
 
 
 	public static JSONObject postTwist(int id_user ,String text, MongoCollection<Document> message_collection) throws SQLException, JSONException, InstantiationException, IllegalAccessException{
-		Connection co = Database.getMySQLConnection();
 		Document query = new Document();
 
 		System.out.println("user connected!");
@@ -187,7 +181,7 @@ public class MessageTools {
 			 * This query will select all documents in the message collection where the id_comment field value
 			 * does not equal to id*/
 			query.append("id_comment", new Document("$exists", true).append("$ne", id));
-			Document f = message_collection.find(query).first();
+			//Document f = message_collection.find(query).first();
 			//System.out.println(query.toString());
 			//FindIterable<Document> cursor = message_collection.find(query);
 			//if (((Document) cursor).size() != 0)
@@ -245,6 +239,7 @@ public class MessageTools {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static JSONObject listComment(String id_twist, MongoCollection<Document> message_collection) throws JSONException {
 		Document filter = new Document("_id", new ObjectId(id_twist));
 		FindIterable<Document> fi = message_collection.find(filter);

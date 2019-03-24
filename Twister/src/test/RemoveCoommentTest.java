@@ -2,8 +2,7 @@ package test;
 
 import org.json.JSONObject;
 
-import service.AddCommentS;
-import service.RemoveCommentS;
+import service.comments.RemoveCommentS;
 
 public class RemoveCoommentTest {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {

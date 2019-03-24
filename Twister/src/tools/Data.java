@@ -3,6 +3,10 @@ package tools;
  * Class des constatntes utilisées dans l'application
  * */
 public class Data {
+	
+	public static String MAIL_ADDRESS = "twister.socialnetwork@gmail.com";
+	public static String MAIL_PASSWORD = "3I017Project";
+	
 	public static int CODE_MISSING_PARAMETERS = -1;
 	public static String MESSAGE_MISSING_PARAMETERS = "Missing parameter(s).";
 	

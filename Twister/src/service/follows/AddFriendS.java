@@ -1,53 +1,49 @@
 /**
  * 
  */
-package service;
+package service.follows;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.bson.Document;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.mongodb.client.MongoCollection;
 
 import db.DBStatic;
 import db.Database;
 import tools.Data;
-import tools.MessageTools;
+import tools.FriendTools;
 import tools.ServiceTools;
 import tools.SessionTools;
-import tools.UserTools;
 
 /**
  * @author LAOUER Walid
  *
  */
-public class AddCommentS {
-	public static JSONObject postComment(String key, String id_message, String text) throws InstantiationException, IllegalAccessException {
-		if(key == null || text==null || id_message==null) {
+public class AddFriendS {
+	public static JSONObject addFriend(String key, int id_friend) throws InstantiationException, IllegalAccessException {
+		if (key == null || id_friend==0)
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
-		}
-		MongoCollection<Document> m = Database.getMongoMessage();
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
-			int id =SessionTools.getIdFromKey(key, co);
+			int id_user = SessionTools.getIdFromKey(key, co);
 			boolean b = SessionTools.isConnected(key);
-			if(!b) {
+			
+			if(b==false) {
+				System.out.println(b);
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}
-			try {
-				return MessageTools.postComment(id,id_message, text, m, co);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
+
+			boolean is_friend = FriendTools.alreadyFriend(id_user, id_friend, co);
+			if (is_friend) {
+				co.close();
+				return ServiceTools.serviceRefused(Data.MESSAGE_USER_ALREADY_FRIEND, Data.CODE_USER_ALREADY_FRIEND);
 			}
-			//
-		}catch(SQLException s) {
+			return FriendTools.follow(key, id_friend, co);
+		} catch (JSONException | SQLException s) {
+			// TODO Auto-generated catch block
 			s.printStackTrace();
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
 		}finally {
@@ -60,28 +56,32 @@ public class AddCommentS {
 					e.printStackTrace();
 				}
 		}
-
 	}
 
-	public static JSONObject listComments(String key, String id_twist) throws InstantiationException, IllegalAccessException
-	{
-		if(key == null || id_twist == null) {
+	public static JSONObject listFollowers(String key) throws InstantiationException, IllegalAccessException {
+		if(key ==null)
 			return ServiceTools.serviceRefused(Data.MESSAGE_MISSING_PARAMETERS, Data.CODE_MISSING_PARAMETERS);
-		}
-		MongoCollection<Document> m = Database.getMongoMessage();
 		Connection co=null;
 		try {
 			co = Database.getMySQLConnection();
+
+			int id_user = SessionTools.getIdFromKey(key, co);
 			boolean b = SessionTools.isConnected(key);
+			System.out.println(b);
 			if(!b) {
+				
 				co.close();
 				return ServiceTools.serviceRefused(Data.MESSAGE_USER_NOT_CONNECTED, Data.CODE_USER_NOT_CONNECTED);
 			}
-			return MessageTools.listComment(id_twist, m);		
+			return FriendTools.listFollowers(id_user, co);
 		}catch(SQLException s) {
+			s.printStackTrace();
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_SQL, Data.CODE_ERROR_SQL);
+
 		}catch(JSONException e) {
+			e.printStackTrace();
 			return ServiceTools.serviceRefused(Data.MESSAGE_ERROR_JSON, Data.CODE_ERROR_JSON);
+
 		}finally {
 			if ((!DBStatic.is_pooling) && (co != null))
 				try {
@@ -94,4 +94,6 @@ public class AddCommentS {
 		}
 
 	}
+
+
 }

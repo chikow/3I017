@@ -4,12 +4,7 @@ package test;
 
 import org.json.JSONObject;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import db.Database;
-import service.CreatUserS;
-import tools.UserTools;
+import service.user.CreatUserS;
 
 
 

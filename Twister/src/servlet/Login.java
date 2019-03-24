@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import service.LoginS;
+import service.user.LoginS;
 
 /**
  * @author LAOUER Walid
@@ -20,6 +20,10 @@ public class Login extends HttpServlet{
 	
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import service.LoginS;
+import service.user.LoginS;
 import tools.SessionTools;
 
 public class LoginTest {
