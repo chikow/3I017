@@ -8,7 +8,7 @@
  <!-- url: url de connexion -->
  <Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource"
  maxActive="100" maxIdle="30" maxWait="10000"
- username="sql7279445" password="4rjgZKRwbq"
+ username="root" password=""
  driverClassName="com.mysql.jdbc.Driver"
- url="sql7.freemysqlhosting.net:3306"/>
+ url="localhost:3306"/>
 </Context>

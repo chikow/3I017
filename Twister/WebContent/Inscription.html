@@ -1,0 +1,22 @@
+<div id="container_inscription">
+    <div id="header">
+        <div id="logo" onclick="makeMainPanel()"><img id="logo_img" src="image/logo.png" alt="logo"/><span id="title">Twister</span></div>
+    </div>
+    <div id="main_inscription">
+        <h1>Inscription</h1>
+        <div class="ids" id="indication">
+            <p>* le mot de passe doit contenir au moins 8 caractères.<br/></p>
+            <div id=error_inscription style="color:DarkRed;"></div>
+        </div>
+        
+        <div class="ids" id="nom" ><span>Nom</span><input id="first_input_inscription" type="text"  name="nom"/></div>
+        <div class="ids" id="prenom"><span>Prenom</span><input type="text"  id="prenom_ins" name="prenom"/></div>
+        <div class="ids" id="login"><span>login</span><input type="text" id="login_ins" name="login"/></div>
+        <div class="ids" id="mail"><span>Mail</span><input type="email" name="email" id="input_mail" placeholder="toto@toto.toto"/></div>
+        <div class="ids" id="mdp"><span>Mot de passe</span><input type="password" id="pwd" name="pwd" size="32" minlength="8" value=""/></div>
+        <div class="ids" id="mdp2"><span>Confirmer mot de passe</span><input type="password" id="pwd2" name="pwd2" size="32" minlength="8" value=""/></div>
+        <div class="ids" id="upload"><span>Photo de Profil</span><input type="file" id="filechooser" accept="image/*"></div>
+        <input type="submit" value="Enregistrer" id="submit_button" onclick="mainInscription()"/>
+        <input type="button" value="Déjà un compte ?" id="cancel_button" onclick="javascript:(function (){makeConnexionPanel()})()"/>
+    </div>
+</div>

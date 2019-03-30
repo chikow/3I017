@@ -2,7 +2,7 @@ package test;
 
 import org.json.JSONObject;
 
-import service.user.PasswordRecovery;
+import service.user.PasswordRecoveryS;
 
 public class PasswordTest {
 
@@ -10,7 +10,7 @@ public class PasswordTest {
 		// TODO Auto-generated method stub
 		JSONObject neel = null;
 		try {
-			neel = PasswordRecovery.passwordRecovery("bealref@gmail.com");
+			neel = PasswordRecoveryS.passwordRecovery("bealref@gmail.com");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

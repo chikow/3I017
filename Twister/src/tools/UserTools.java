@@ -232,6 +232,7 @@ public class UserTools {
 			}
 
 		}
+		st.close();
 		return ServiceTools.serviceAccepted().put("message send successfully", 1);
 	}
 

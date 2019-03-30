@@ -11,7 +11,7 @@ import tools.Data;
 import tools.ServiceTools;
 import tools.UserTools;
 
-public class PasswordRecovery {
+public class PasswordRecoveryS {
 
 	public static JSONObject passwordRecovery(String mail) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		if (mail == null)
@@ -21,8 +21,9 @@ public class PasswordRecovery {
 		try {
 			co = Database.getMySQLConnection();
 			boolean b =UserTools.mailExists(mail, co);
-			if(!b)
+			if(!b) {
 				return ServiceTools.serviceRefused(Data.MESSAGE_MAIL_DOES_NOT_EXIST, Data.CODE_MAIL_DOES_NOT_EXIST);
+			}
 			return UserTools.sendPasswordRecovery(mail, co);
 		}catch (JSONException | SQLException s) {
 			s.printStackTrace();
