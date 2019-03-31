@@ -53,8 +53,9 @@ body{
     padding: 20px;
 }
 .logo{
+    margin-top: 100px;
     display: flex;
-    position: center;
+    position: relative;
     height: 1%;
     width: 20%;
     align-items: center;
@@ -159,7 +160,13 @@ sideBar
 /**
 Fin-side-Bar
 **/
+/*
+NavBar css*
+ */
 
+/*
+Fin NavBarcss*
+ */
 /**
 twisters container
  */
@@ -176,8 +183,9 @@ twisters container
 }
 
 .animate-Twister {
+    margin-left: 350px;
+    margin-right: 350px;
     margin-top: 100px;
-    position: relative;
     animation: animatetop .4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
@@ -211,8 +219,15 @@ twisters container
 .MuiGrid-container-124 {
     width: 10%;
     display: flex;
-
     box-sizing: border-box;
+}
+.avatarTwist{
+    padding: 10px;
+}
+
+.DeleteButton{
+    margin-left: 80%;
+    padding: 10px;
 }
 /**
 Twister container fin

@@ -35,7 +35,7 @@ function SvgIcons(props) {
     const { classes } = props;
     return (
         <div className={classes.root}>
-            <HomeIcon color="disabled" className={classes.iconHover} fontSize="large" />
+            <HomeIcon color="disabled" className={classes.iconHover} fontSize="large"/>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Signup from './Signup'
+import Signup from './NotUsedComponent/Signup'
 import Modalsignup from './Modalsignup'
 import {FormControl, InputGroup, Form, Button} from "react-bootstrap";
 class Login extends React.Component{
@@ -53,7 +53,7 @@ class Login extends React.Component{
                     <Form.Group controlId="formBasicChecbox">
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
-                    <div><input type="checkbox"/><span>Maintenir ma connexion</span></div>
+
                     <Button variant="contained" type="submit" id="logbouton">
                         Submit
                     </Button>

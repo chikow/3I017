@@ -13,6 +13,23 @@ import MenuBar from './NotUsedComponent/MenuBar'
 import red from "@material-ui/core/colors/red";
 import SvgIcons from './IconHomePage'
 
+class Navbar extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+
+        }
+    }
+
+    render() {
+        return(
+            <div>
+                <SearchAppBar/>
+            </div>
+        )
+    }
+}
+
 const styles = theme => ({
     root: {
         position: 'fixed',
@@ -88,8 +105,11 @@ const styles = theme => ({
 });
 
 
+
+
 function SearchAppBar(props) {
-    const { classes } = props;
+    const { classes } = props
+
 
     return (
         <div className={classes.root} id="test">
@@ -100,7 +120,7 @@ function SearchAppBar(props) {
                                           Twister
                     </Typography>
                     <div className={classes.grow} />
-                    <IconButton className="homeIcon">
+                    <IconButton className="homeIcon" onClick={()=>alert("Click")}>
                         <SvgIcons/>
                     </IconButton>
                     <div className={classes.search}>

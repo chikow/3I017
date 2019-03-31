@@ -1,11 +1,11 @@
 import React from 'react';
 import SideBar from './SideBar'
-import Twisters  from './Twisters'
+import Twisters  from './Twist/Twisters'
 class HomePage extends React.Component{
     constructor(props){
         super(props)
         this.state={
-
+            isConnected:props.handle
         }
     }
 
@@ -13,14 +13,15 @@ class HomePage extends React.Component{
         return(
             <div>
                 <div id="App">
-                    <SideBar />
+                    <SideBar handle={this.props.handle}/>
                     <div id="page-wrap">
                     </div>
                 </div>
                 <div className="animate-Twister">
                 <Twisters/>
-                    On s'occupera de ça plus tard !!
+                {this.state.isConnected?"":"On s'occupera de ça plus tard !!"}
                 </div>
+
 
             </div>
         )

@@ -13,7 +13,7 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div >
                 <img className="logo" src={logo}/>
                 <div className="Login-page"><Login/></div>
             </div>
