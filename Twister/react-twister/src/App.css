@@ -53,17 +53,15 @@ body{
     padding: 20px;
 }
 .logo{
-    margin-top: 100px;
     display: flex;
-    position: relative;
+    position: inherit;
     height: 1%;
     width: 20%;
     align-items: center;
-    margin: auto;
-    padding: 60px;
+    margin : auto;
+    padding: 50px;
     border: #efefef;
     line-height: normal;
-    box-sizing: inherit;
     box-shadow: gainsboro;
 }
 
@@ -142,6 +140,9 @@ sideBar
     background: #373a47;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
+    margin-left: -260px;
+    position: inherit;
+    z-index: -1;
 }
 
 .bm-morph-shape {
@@ -151,10 +152,26 @@ sideBar
 .bm-item-list {
     color: #b8b7ad;
 }
-
+.bm-menu-wrap{
+    position: fixed;
+    right: initial;
+    z-index: -1;
+    width: 10px;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1) 0s;
+}
 .bm-overlay {
     background: rgba(0, 0, 0, 0.2);
+    margin: auto;
+    position: inherit;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: opacity 0.3s ease 0s;
 }
+
+
 
 
 /**
@@ -183,27 +200,25 @@ twisters container
 }
 
 .animate-Twister {
-    margin-left: 350px;
+    width: 100%;
+    margin-left: 10px;
     margin-right: 350px;
-    margin-top: 100px;
-    animation: animatetop .4s;
-    animation-name: animatetop;
+    margin-top: 60px;
     animation-duration: 0.4s;
     animation-timing-function: ease;
     animation-delay: 0s;
     animation-iteration-count: 1;
-    animation-direction: normal;
-    animation-fill-mode: none;
-    animation-play-state: running;
     border: 1px #efefef dashed;
     background-color: white;
-    z-index: -1;
+    z-index: 0;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
     border-radius: 2px;
     position: relative;
 
 }
-.add-twister {
+.add-twister-div{
+    z-index:0 ;
+    position: relative;
     color: rgba(0, 0, 0, 0.87);
     background-color: rgb(255, 255, 255);
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
@@ -214,10 +229,64 @@ twisters container
     border-radius: 2px;
     height: 68px;
     width: 100%;
-}
+    margin-top: 150px;
 
-.MuiGrid-container-124 {
-    width: 10%;
+}
+.add-twister-div-span {
+    border: 10px;
+    box-sizing: border-box;
+    display: block;
+    font-family: Roboto, sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0px;
+    padding: 7px 0px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 200;
+    position: relative;
+    color: rgba(0, 0, 0, 0.87);
+    line-height: 16px;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    background: none;
+
+}
+.add-twister-span-div{
+    margin-left: 0px;
+    padding: 20px 56px 20px 72px;
+    position: relative;
+}
+.add-twist-icon{
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 188, 212);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+.add-twist-addPic-icon{
+    display: block;
+    color: rgba(0, 0, 0, 0.87);
+    fill: rgb(117, 117, 117);
+    height: 24px;
+    width: 24px;
+    user-select: none;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    position: absolute;
+    top: 4px;
+    margin: 12px;
+    right: 4px;
+}
+.Media {
+    width: 100%;
     display: flex;
     box-sizing: border-box;
 }
@@ -228,7 +297,95 @@ twisters container
 .DeleteButton{
     margin-left: 80%;
     padding: 10px;
+    position: relative;
+}
+
+.twister-div-media{
+    position: inherit;
+    width: 100%;
+    margin-right: 10px;
+    display: inherit;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: rgb(255, 255, 255);
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    border-radius: 2px;
+    z-index: 1100;
+}
+.twister-like{
+     cursor: pointer;
+     position: relative;
+     overflow: visible;
+     display: table;
+     height: auto;
+     width: 100%;
+     transform: translate(6px, 6px);
+}
+
+.twister-input-like{
+    position: absolute;
+    cursor: inherit;
+    pointer-events: all;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    left: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+.add-twist-text-area{
+    height: 48px;
+    width: 100%;
+    resize: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: 200;
+    font-stretch: inherit;
+    font-size: 14px;
+    line-height: inherit;
+    font-family: inherit;
+    padding: 0px;
+    cursor: inherit;
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.87);
+    opacity: 1;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin-top: 12px;
+    margin-bottom: -12px;
+    box-sizing: border-box;
+    visibility: inherit;
+}
+.edit-twist-button-toggle{
+    height: 100%;
+    width: 80%;
+    margin-right: 20px;
+    position: absolute;
+    top: 0px;
+    left: -70px;
+    pointer-events: auto;
+    z-index: 0;
 }
 /**
 Twister container fin
  */
+
+.grid {
+
+    display: grid;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 0;
+    position: center;
+}

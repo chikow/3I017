@@ -1,13 +1,7 @@
 const twistersData = [
     {
         login: "Neel",
-        text: "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque\n" +
-            "                        ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,\n" +
-            "                        tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.\n" +
-            "                        Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque\n" +
-            "                        ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,\n" +
-            "                        tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.\n" +
-            "                        Donec lacinia congue felis in faucibus.",
+        text: "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque \n",
         date: "12/01/2019",
         comments:"You are right!"
     },

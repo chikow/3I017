@@ -9,7 +9,7 @@ class MainPage extends React.Component{
         super()
         this.state = {
             isConnected : true,
-            currentePage: "HomePage"
+            currentePage: ""
         }
         this.getConnected = this.getConnected.bind(this)
         this.setLogout = this.setLogout.bind(this)
@@ -27,9 +27,9 @@ class MainPage extends React.Component{
         })
     }
     handleOnclickLogin(){
-        this.setState(prevState=>{
-            return{isConnected: !this.state.isConnected}
-        });
+        this.setState({
+            isConnected: false
+        })
     }
 
     render(){
@@ -38,9 +38,9 @@ class MainPage extends React.Component{
                 <div>
                     <SearchAppBar />
                 </div>
-                <div>{!this.state.isConnected&&<LoginPage/>}</div>
-                <div>{this.state.currentePage=="LoginPage"&&<LoginPage />}</div>
-                <div>{this.state.isConnected&&<HomePage handle={this.handleOnclickLogin}/>}</div>
+                {!this.state.isConnected && <LoginPage/>}
+
+                {this.state.isConnected && <HomePage handle={this.setLogout}/>}
 
             </div>
         )

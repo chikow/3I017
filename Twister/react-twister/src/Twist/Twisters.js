@@ -1,12 +1,12 @@
 import React from 'react'
-import {Button, Container, Media} from "react-bootstrap";
+import {Button, ButtonGroup, Container, Dropdown, Media} from "react-bootstrap";
 import {deepOrange} from "@material-ui/core/colors";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import twistersData from "./TwisterData"
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import EditIcon from '../NotUsedComponent/EditIcon'
 
 class Twisters extends React.Component{
     constructor(){
@@ -18,7 +18,7 @@ class Twisters extends React.Component{
 
     render(){
         const avatarStyle = {
-                margin: '10%',
+                margin: 'auto',
                 color: 'blue',
                 backgroundColor: '',
 
@@ -28,53 +28,95 @@ class Twisters extends React.Component{
             padding: '2px',
             fontSize: '65%'
         };
-        const data = this.state.twisterData.map((twist, index) => <div key={index}>
-            <Media className="MuiGrid-container-124" >
-                <div >
-                    <Grid container justify="center" alignItems="center" >
-                        <Avatar style={avatarStyle}>{twist.login.substr(0, 1)}</Avatar>
-                    </Grid>
-                </div>
-                <Media.Body >
-                    <h5>
-                        {twist.login}<br></br>
-                        <span style={dateStyle}>{twist.date}</span>
-                    </h5>
+        const data = this.state.twisterData.map((twist, index) =>
+            <div key={index} className="twister-div-media">
+                <div style={{'padding-bottom': '0px', position:'inherit'}}>
 
-                    <p>
-                        {twist.text}
+                        <Media className="Media" >
 
-                        <div className="DeleteButton">
-                            <IconButton aria-label="Delete" >
-                                <Button variant="secondary" size="small" color="secondary" onClick={()=>alert("Clicked!")}>
-                                    Comment
+                            <div style={{padding: '16px', 'font-weight': '500',  'box-sizing': 'border-box', position: 'relative', 'white-space': 'nowrap'}}>
 
-                                </Button>
-                                <DeleteIcon onClick={()=>{}} />
-                            </IconButton>
-                        </div>
-                    </p>
-
-                    <Media>
-                        <div >
-                            <Grid container justify="center" alignItems="center" >
-                                <Avatar style={avatarStyle}>{twist.login.substr(0, 1)}</Avatar>
-                            </Grid>
-                        </div>
-                        <Media.Body>
-                            <h6>Media Heading</h6>
-                            <p>
-                                {twist.comments}
-                                <div className="DeleteButton">
-                                    <IconButton aria-label="Delete" >
-                                        <DeleteIcon onClick={()=>{}} fontSize="small"/>
-                                    </IconButton>
+                            <div >
+                                <div style={{'margin-right': '500px'}}>
+                                <grid>
+                                    <Avatar style={avatarStyle}>
+                                        {twist.login.substr(0, 1)}
+                                    </Avatar>
+                                </grid>
+                            </div>
+                                <div style={{display: "inline-block", "vertical-align": 'top', "white-space": 'normal', "padding-right": "90px"}}>
+                                    <span style={{color: 'rgba(0, 0, 0, 0.87)', display: 'block', 'font-size': '20px', 'margin-left': '5px'}}>{twist.login}</span><br></br>
+                                    <span style={{color: 'rgba(0, 0, 0, 0.54)', display:'block', 'font-size': '14px', 'margin-top':'-20px'}}>{twist.date}</span>
                                 </div>
-                            </p>
-                        </Media.Body>
-                    </Media>
-                </Media.Body>
-            </Media></div>)
+                            </div>
+
+                            <div style={{position: 'absolute', right: '18px', top: '8px'}}>
+                                <div style={{display: 'block', position: 'absolute', top: '0px', right: '4px', 'z-index': '0'}}>
+
+                                        <div>
+                                            <div className="edit-twist-button-toggle" >
+                                                <Dropdown as={ButtonGroup}>
+                                                        <Dropdown.Toggle split variant="info" id="dropdown-split-basic" />
+                                                        <Dropdown.Menu>
+                                                            <Dropdown.Item hred="#/action-1">Action</Dropdown.Item>
+                                                            <Dropdown.Item hred="#/action-2">Another action</Dropdown.Item>
+                                                            <Dropdown.Item hred="#/action-3">Something else</Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                </Dropdown>
+                                            </div>
+                                        </div>
+
+                                    <div style={{display: 'none'}}></div>
+                                </div>
+                            </div>
+
+                            <Media.Body >
+                                <p style={{padding: '10px', 'font-size': '14px', color: 'rgba(0, 0, 0, 0.87)', 'overflow-wrap': 'break-word'}}>
+                                    <span style={{'font-size': '15px'}}>
+                                        {twist.text}
+                                    </span>
+                                </p>
+                                <div style={{"padding": '8px', position: 'relative'}}>
+                                    <div style={{margin: '16px 8px', display: 'flex', 'justify-content': 'space-between'}}>
+                                        <div style={{"display": 'flex'}}>
+                                            <div>
+                                                <div className="twister-like">
+                                                    <input type="checkbox" value="on" className="twister-input-like"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="DeleteButton">
+                                            <input type="button" value="Comment" onClick={()=>alert("Click")}/>
+                                            <IconButton aria-label="Delete" >
+                                                <DeleteIcon onClick={()=>alert("Click")} />
+                                            </IconButton>
+                                        </div>
+                                    </div>
+                                </div>
+                                <Media>
+                                    <div>
+                                        <Grid container justify="center" alignItems="center" >
+                                            <Avatar style={avatarStyle}>{twist.login.substr(0, 1)}</Avatar>
+                                        </Grid>
+                                    </div>
+                                    <Media.Body>
+                                        <h6>Media Heading</h6>
+                                            <p>
+                                                {twist.comments}
+                                                <div className="DeleteButton">
+                                                    <IconButton aria-label="Delete" >
+                                                        <DeleteIcon onClick={()=>alert("Click")} fontSize="small"/>
+                                                    </IconButton>
+                                                </div>
+                                            </p>
+                                    </Media.Body>
+                                </Media>
+                            </Media.Body>
+                            </div>
+                        </Media>
+
+                </div>
+            </div>)
         return(
           <div>
               <Container >

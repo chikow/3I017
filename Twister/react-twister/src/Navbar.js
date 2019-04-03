@@ -35,7 +35,8 @@ const styles = theme => ({
         position: 'fixed',
         width: '100%',
         backgroundColor: 'lightgreen',
-        color: 'grey'
+        color: 'grey',
+        'z-index': "0"
     },
     grow: {
         flexGrow: 1,
@@ -125,7 +126,7 @@ function SearchAppBar(props) {
                     </IconButton>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
-                            <SearchIcon />
+                            <SearchIcon/>
                         </div>
                         <InputBase
                             placeholder="Search…"
