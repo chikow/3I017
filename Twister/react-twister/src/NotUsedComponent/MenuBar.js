@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
-import SideBar from "../HomePage";
+import SideBar from "../Components/HomePage";
 
 class MenuBar extends React.Component {
     state = {

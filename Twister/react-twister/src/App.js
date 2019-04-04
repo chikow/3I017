@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import MainPage from "./MainPage";
+import MainPage from "./Components/MainPage";
 class App extends Component {
   render() {
     return (
