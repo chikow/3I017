@@ -227,6 +227,15 @@ twisters container
     margin-top: 150px;
 
 }
+.add-twister-div:hover{
+    background-color: whitesmoke;
+}
+.add-twister-div:focus {outline:0;}
+.add-twister-div:active {
+    outline: none;
+    border: none;
+}
+
 .add-twister-div-span {
     border: 10px;
     box-sizing: border-box;
@@ -377,10 +386,9 @@ twisters container
 .list-comment-button{
     right:100px;
     border: 10px;
-    box-sizing: border-box;
     font-family: Roboto, sans-serif;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
+    color: black;
 
 
 }

@@ -8,12 +8,15 @@ import IconButton from "@material-ui/core/IconButton";
 
 import EditIcon from '../NotUsedComponent/EditIcon'
 import Comment from './Comments.js'
+import {Card, CardBody, Collapse} from "reactstrap";
+import CommentList from "./CommentList";
 class Twisters extends React.Component{
     constructor(){
         super()
         this.state={
             twisterData: twistersData,
-            listComments:[]
+            listComments:[],
+            collapse:false
         }
         this.changeValue=this.changeValue.bind(this)
     }
@@ -100,7 +103,6 @@ class Twisters extends React.Component{
                                             </Dropdown>
                                         </div>
                                     </div>
-                                    <div style={{display: 'none'}}></div>
                                 </div>
                             </div>
                             <div style={{
@@ -116,15 +118,13 @@ class Twisters extends React.Component{
                                     'overflow-wrap': 'break-word'
                                 }}>
                                     <span style={{'font-size': '20px'}}>
-                                        {this.state.text}heeeeeeeeeeeeeeeeere
+                                        {twist.text}
                                     </span>
                                 </p>
                             </div>
                             <div className="list-comment-button">
-                                {this.changeValue(twist.comments)}
-                                {this.state.listComments.map((comment, index) => <div><Comment key={index} comments={comment.comments}/></div>)}
-                                {this.state.listComments}
-                                <Comment comments={twist.comments}/>
+
+                                <CommentList comments = {twist.comments}/>
                             </div>
                         </div>
                     </Media>

@@ -1,7 +1,7 @@
 const twistersData = [
     {
         login: "Neel",
-        text: "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque \n",
+        text: "Cras sit amet nibh libero ! ",
         date: "12/01/2019",
         comments:["You are right!"," another comment", " and another one"]
     },

@@ -7,11 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+
 import SearchIcon from '@material-ui/icons/Search';
-import MenuBar from '../NotUsedComponent/MenuBar'
-import red from "@material-ui/core/colors/red";
+
 import SvgIcons from './IconHomePage'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 class Navbar extends React.Component{
     constructor(props){
@@ -113,32 +113,38 @@ function SearchAppBar(props) {
 
 
     return (
-        <div className={classes.root} id="test">
-            <AppBar position="static">
-                <Toolbar className="NavBar" color="inherit" aria-label="Open drawer">
+        <Router>
+            <div className={classes.root} id="test">
+                <AppBar position="static">
+                    <Toolbar className="NavBar" color="inherit" aria-label="Open drawer">
 
-                    <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                                          Twister
-                    </Typography>
-                    <div className={classes.grow} />
-                    <IconButton onClick={home}>
-                        <SvgIcons/>
-                    </IconButton>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon/>
+                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                                              Twister
+                        </Typography>
+                        <div className={classes.grow} />
+                        <Route path="/HomePage" render={props => (
+                            <React.Fragment>
+                                <IconButton onClick={home}>
+                                    <SvgIcons/>
+                                </IconButton>
+                            </React.Fragment>
+                        )}/>
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon/>
+                            </div>
+                            <InputBase
+                                placeholder="Search…"
+                                classes={{
+                                    root: classes.inputRoot,
+                                    input: classes.inputInput,
+                                }}
+                            />
                         </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                        />
-                    </div>
-                </Toolbar>
-            </AppBar>
-        </div>
+                    </Toolbar>
+                </AppBar>
+            </div>
+        </Router>
     );
 }
 

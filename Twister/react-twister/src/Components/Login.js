@@ -6,21 +6,12 @@ class Login extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            signUp: false
+            signUp: false,
+            PasswordForget: false
         }
         this.handleClick = this.handleClick.bind(this)
     }
 
-        //this.handleChange=this.handleChange.bind(this)
-
-
-    //handleChange(login, password) {
-      //  this.setState(prevState => {
-        //        this.state.login = login
-          //      this.state.password = password
-            //}
-        //)
-    //}
 
     handleClick(){
       this.setState(PrevState =>{

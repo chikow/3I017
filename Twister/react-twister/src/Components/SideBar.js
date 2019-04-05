@@ -12,7 +12,7 @@ export default class extends React.Component{
         const {home, Profile, Logout} = this.props
         return (
             <Menu>
-                <a className="menu-item" href="#/" onClick={home}>
+                <a className="menu-item" href="/HomePage" onClick={home}>
                     Home Page
                 </a>
 

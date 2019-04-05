@@ -1,5 +1,5 @@
 import React from 'react'
-import SvgIcons from './IconPhoto'
+import SvgIcons from '../Components/IconPhoto'
 import IconButton from "@material-ui/core/es/IconButton";
 class AddTwist extends React.Component{
     constructor(props){

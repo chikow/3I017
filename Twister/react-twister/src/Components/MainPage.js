@@ -8,8 +8,8 @@ class MainPage extends React.Component{
     constructor(){
         super()
         this.state = {
-            isConnected : false,
-            currentePage: "LoginPage"
+            isConnected : true,
+            currentePage: "HomePage"
         }
         this.getConnected = this.getConnected.bind(this)
         this.setLogout = this.setLogout.bind(this)
@@ -18,7 +18,7 @@ class MainPage extends React.Component{
 
     getConnected() {
         this.setState( {
-            isConnected: false,
+            isConnected: true,
             currentePage: "HomePage"
         })
     }
