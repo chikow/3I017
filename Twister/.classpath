@@ -11,27 +11,10 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/S6/json-org.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/S6/mongo-java-driver-3.10.1.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/S6/mysql-connector-java-5.1.18-bin.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/S6/servlet-api.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/S6/3I017-master/3I017-3/javax.activation-1.2.0.jar"/>
-	<classpathentry kind="lib" path="D:/S6/3I017-master/3I017-3/javax.mail-1.4.4.jar"/>
+	<classpathentry kind="lib" path="D:/S6/3I017-master/3I017-3/Twister/lib/json-org.jar"/>
+	<classpathentry kind="lib" path="D:/S6/3I017-master/3I017-3/Twister/lib/mongo-java-driver-3.10.1.jar"/>
+	<classpathentry kind="lib" path="D:/S6/3I017-master/3I017-3/Twister/lib/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="lib" path="D:/S6/3I017-master/3I017-3/Twister/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/S6/3I017-master/3I017-3/Twister/lib/javax.mail-1.5.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

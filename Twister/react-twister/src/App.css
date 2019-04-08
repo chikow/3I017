@@ -53,6 +53,9 @@ body{
     padding: 20px;
 }
 .logo{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     display: flex;
     position: inherit;
     height: 1%;
@@ -94,7 +97,7 @@ sideBar
 **/
 #SideBar {
     font-family: sans-serif;
-    height: 100vh;
+    height: 50vh;
 }
 
 
@@ -133,17 +136,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
 */
 .bm-menu-wrap {
     z-index: -1;
-    position: fixed;
+    position: relative;
     height: 50%;
 }
 
 /* General sidebar styles */
 .bm-menu {
-    margin-top: 90px;
+    margin-top: 91px;
     background: #373a47;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
-    z-index: 0;
+    z-index: -1;
+}
+.bm-item-list{
+    height: 100%;
+    margin-top: 85px;
+    overflow: no-display;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -164,6 +172,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Styling of overlay */
 .bm-overlay {
+    margin-top: -25px;
     background: rgba(0, 0, 0, 0.3);
 }
 
@@ -278,7 +287,7 @@ twisters container
 }
 .add-twist-addPic-icon{
     display: block;
-    color: rgba(0, 0, 0, 0.87);
+    color: cadetblue;
     fill: rgb(117, 117, 117);
     height: 24px;
     width: 24px;
@@ -328,7 +337,7 @@ twisters container
      height: auto;
      width: 100%;
      transform: translate(6px, 6px);
-    z-index: -1;
+    z-index: 1;
 }
 
 .twister-input-like{
@@ -373,6 +382,7 @@ twisters container
     visibility: inherit;
 }
 .edit-twist-button-toggle{
+    color:cadetblue;
     height: 100%;
     width: 80%;
     margin-right: 20px;
@@ -388,7 +398,7 @@ twisters container
     border: 10px;
     font-family: Roboto, sans-serif;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    color: black;
+    color: cadetblue;
 
 
 }

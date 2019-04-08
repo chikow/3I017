@@ -42,43 +42,43 @@ class Twisters extends React.Component{
         };
         const data = this.state.twisterData.map((twist, index) =>
             <div key={index} className="twister-div-media">
-                <div style={{'padding-bottom': '0px', position: 'inherit'}}>
+                <div style={{'paddingBottom': '0px', position: 'inherit'}}>
 
                     <Media className="Media">
 
                         <div style={{
                             padding: '16px',
-                            'font-weight': '500',
-                            'box-sizing': 'border-box',
+                            'fontWeight': '500',
+                            'boxSizing': 'border-box',
                             position: 'relative',
-                            'white-space': 'nowrap'
+                            'whiteSpace': 'nowrap'
                         }}>
 
                             <div>
-                                <div style={{'margin-right': '500px'}}>
-                                    <grid>
+                                <div style={{'marginRight': '500px'}}>
+                                    <div>
                                         <Avatar style={avatarStyle}>
                                             {twist.login.substr(0, 1)}
                                         </Avatar>
-                                    </grid>
+                                    </div>
                                 </div>
                                 <div style={{
                                     display: "inline-block",
-                                    "vertical-align": 'top',
-                                    "white-space": 'normal',
-                                    "padding-right": "90px"
+                                    verticalAlign: 'top',
+                                    whiteSpace: 'normal',
+                                    paddingRight: "90px"
                                 }}>
                                     <span style={{
                                         color: 'rgba(0, 0, 0, 0.87)',
                                         display: 'block',
-                                        'font-size': '20px',
-                                        'margin-left': '5px'
+                                        fontSize: '20px',
+                                        marginLeft: '5px'
                                     }}>{twist.login}</span><br></br>
                                     <span style={{
                                         color: 'rgba(0, 0, 0, 0.54)',
                                         display: 'block',
-                                        'font-size': '14px',
-                                        'margin-top': '-20px'
+                                        'fontSize': '14px',
+                                        'marginTop': '-20px'
                                     }}>{twist.date}</span>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@ class Twisters extends React.Component{
                                     position: 'absolute',
                                     top: '0px',
                                     right: '4px',
-                                    'z-index': '0'
+                                    zIndex: '0'
                                 }}>
                                     <div>
                                         <div className="edit-twist-button-toggle">
@@ -107,17 +107,17 @@ class Twisters extends React.Component{
                             </div>
                             <div style={{
                                 display: 'inline-block',
-                                'vertical-align': 'none',
-                                'white-space': 'normal',
-                                'padding-right': '90px'
+                                'verticalAlign': 'none',
+                                'whiteSpace': 'normal',
+                                'paddingRight': '90px'
                             }}>
                                 <p style={{
                                     padding: '10px',
-                                    'font-size': '14px',
+                                    'fontSize': '14px',
                                     color: 'rgba(0, 0, 0, 0.87)',
-                                    'overflow-wrap': 'break-word'
+                                    'overflowWrap': 'break-word'
                                 }}>
-                                    <span style={{'font-size': '20px'}}>
+                                    <span style={{'fontSize': '20px'}}>
                                         {twist.text}
                                     </span>
                                 </p>

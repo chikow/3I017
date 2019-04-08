@@ -12,6 +12,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.Address;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -225,7 +226,7 @@ public class UserTools {
 				transport.connect(host, user, pass);
 				transport.sendMessage(msg, msg.getAllRecipients());
 				transport.close();
-				System.out.println("message send successfully");
+				System.out.println("message sent successfully");
 			}catch(Exception ex)
 			{
 				System.out.println(ex);

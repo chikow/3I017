@@ -9,25 +9,25 @@ export default class extends React.Component{
 
     }
     render() {
-        const {home, Profile, Logout} = this.props
+
         return (
             <Menu>
-                <a className="menu-item" href="/HomePage" onClick={home}>
+                <a className="menu-item" style={{fontSize:'35px'}} href="#/HomePage" onClick={this.props.home}>
                     Home Page
                 </a>
 
-                <a className="menu-item" href="#/Settings" onClick={Profile}>
+                <a className="menu-item" style={{fontSize:'35px'}}href="#/ProfilePage" onClick={this.props.profile}>
                     Profile
                 </a>
 
 
-                <a className="menu-item" href="#/Settings" onClick={()=> alert("Settings")}>
+                <a className="menu-item" style={{fontSize:'35px'}} href="#/Settings" onClick={()=> alert("Settings")}>
                     Settings
                 </a>
-                <a className="menu-item" href="#/Settings">
+                <a className="menu-item" style={{fontSize:'35px'}} href="#/Settings">
                     About
                 </a>
-                <a className="menu-item" href="#/Settings" onClick={Logout}>
+                <a className="menu-item" style={{fontSize:'35px'}} href="#/Login" onClick={this.props.logout}>
                     Logout
                 </a>
 

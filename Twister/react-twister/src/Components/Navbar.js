@@ -122,7 +122,7 @@ function SearchAppBar(props) {
                                               Twister
                         </Typography>
                         <div className={classes.grow} />
-                        <Route path="/HomePage" render={props => (
+                        <Route path="/" render={props => (
                             <React.Fragment>
                                 <IconButton onClick={home}>
                                     <SvgIcons/>

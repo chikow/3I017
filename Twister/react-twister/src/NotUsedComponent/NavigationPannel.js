@@ -7,10 +7,7 @@ class NavigationPannel extends React.Component{
     constructor(props){
         super(props)
             this.state = {
-                user:props.user,
-                status:props.user.statee,
-                login:props.user.login,
-                logout:props.user.logout
+
                 }
     }
     render() {

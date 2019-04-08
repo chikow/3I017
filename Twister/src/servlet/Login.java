@@ -49,9 +49,19 @@ public class Login extends HttpServlet{
 		out.println(json.toString());
 	}
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		doGet(request, response);
+	protected void doPost(
+			HttpServletRequest request, 
+			HttpServletResponse response) 
+					throws ServletException, IOException {
+		
+		
+		response.setContentType("text/html");
+		     
+		PrintWriter out = response.getWriter();
+		  
+		out.print("test pour le post");
+		out.flush();
+
 	}
 }
 

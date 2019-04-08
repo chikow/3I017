@@ -33,7 +33,7 @@ export default class Comment extends Component {
         return (
         <div>
             <Card>
-                <div style={{'margin-top':'10px'}}>
+                <div style={{'marginTop':'10px'}}>
                     <Grid container justify="flex-start" alignItems="center" >
                         <Avatar style={avatarStyle}>{this.state.login.substr(0, 1)}</Avatar>
                         {this.state.comments}

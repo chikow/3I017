@@ -10,7 +10,7 @@ class HomePage extends React.Component{
         super(props)
         this.state = {
             modalAddTwist:false,
-            user:'Delpax'
+            user:'Delpax',
         }
         this.OnAddTwist=this.OnAddTwist.bind(this)
     }
@@ -23,18 +23,19 @@ class HomePage extends React.Component{
         return(
             <div >
                 <div id="App">
-                    <SideBar Profile={this.props.Profile} Logout={this.props.Logout} home={this.props.home}/>
+                    <SideBar profile={this.props.profile} logout={this.props.logout} home={this.props.home}/>
                     <div id="page-wrap">
                     </div>
                 </div>
+
 '
                 <div className="grid">
-                <div style={{"max-width": "700px","min-width": "100px", 'flex': '0 0 50%', 'flex-grow': '1'}}>
+                <div style={{"maxWidth": "700px","minWidth": "100px", 'flex': '0 0 50%', 'flexGrow': '1'}}>
                     <button className="add-twister-div" onClick={()=> this.OnAddTwist()}>
                         <SvgIcons >
                             <circle/>
                         </SvgIcons>
-                        <h5 Style={{'font-weight':'10%'}}>
+                        <h5 style={{'fontWeight':'10%'}}>
                             Click me to add a twister!
                         </h5>
                         <div className="add-twist-icon">

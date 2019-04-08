@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd"> 
-<web-app> 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
 	<servlet>
 		<servlet-name>AddComment</servlet-name>
 		<servlet-class>servlet.AddComment</servlet-class>
@@ -16,11 +18,11 @@
 	<servlet>
 		<servlet-name>CreatUser</servlet-name>
 		<servlet-class>servlet.CreatUser</servlet-class>
-	</servlet>	
+	</servlet>
 	<servlet>
 		<servlet-name>ListComment</servlet-name>
 		<servlet-class>servlet.ListComment</servlet-class>
-	</servlet>	
+	</servlet>
 	<servlet>
 		<servlet-name>ListTwist</servlet-name>
 		<servlet-class>servlet.ListTwist</servlet-class>
@@ -28,11 +30,11 @@
 	<servlet>
 		<servlet-name>Login</servlet-name>
 		<servlet-class>servlet.Login</servlet-class>
-	</servlet>	
+	</servlet>
 	<servlet>
 		<servlet-name>Logout</servlet-name>
 		<servlet-class>servlet.Logout</servlet-class>
-	</servlet>	
+	</servlet>
 	<servlet>
 		<servlet-name>RemoveComment</servlet-name>
 		<servlet-class>servlet.RemoveComment</servlet-class>
@@ -45,12 +47,13 @@
 		<servlet-name>RemoveTwist</servlet-name>
 		<servlet-class>servlet.RemoveTwist</servlet-class>
 	</servlet>
-	
-	
-	
-<!-- **********************************  Servlet Mapping ***************************************************** -->
-	
-	
+
+
+
+	<!-- ********************************** Servlet Mapping ***************************************************** -->
+
+
+
 	<servlet-mapping>
 		<servlet-name>AddComment</servlet-name>
 		<url-pattern>/AddComment</url-pattern>
@@ -66,11 +69,11 @@
 	<servlet-mapping>
 		<servlet-name>CreatUser</servlet-name>
 		<url-pattern>/CreatUser</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ListComment</servlet-name>
 		<url-pattern>/ListComment</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ListTwist</servlet-name>
 		<url-pattern>/ListTwist</url-pattern>
@@ -78,11 +81,11 @@
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/Login</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Logout</servlet-name>
 		<url-pattern>/Logout</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RemoveComment</servlet-name>
 		<url-pattern>/RemoveComment</url-pattern>
@@ -95,5 +98,9 @@
 		<servlet-name>RemoveTwist</servlet-name>
 		<url-pattern>/RemoveTwist</url-pattern>
 	</servlet-mapping>
+
 	
+
+
+
 </web-app>

@@ -2,11 +2,11 @@ import React from 'react'
 import LoginPage from './LoginPage'
 import HomePage from './HomePage'
 import SearchAppBar from './Navbar'
-import {Button} from "react-bootstrap";
+import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
 import ProfilePage from "./Profile";
 class MainPage extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             isConnected : true,
             currentePage: "HomePage"
@@ -16,13 +16,13 @@ class MainPage extends React.Component{
         this.setProfilePage=this.setProfilePage.bind(this);
     }
 
-    getConnected() {
+    getConnected(key) {
         this.setState( {
             isConnected: true,
-            currentePage: "HomePage"
+            currentePage: "HomePage",
         })
     }
-    setLogout () {
+    setLogout(){
         this.setState({
             isConnected: false,
             currentePage: "LoginPage"
@@ -31,29 +31,30 @@ class MainPage extends React.Component{
     setProfilePage(){
         this.setState({
             isConnected: true,
-            currenctPage: "ProfilePage"
+            currentePage: "ProfilePage",
 
         })
     }
 
     render(){
         return (
+            <Router>
             <div>
-                <div>
+                <div style={{position:'absolute'}}>
                     <SearchAppBar home={this.getConnected}/>
                 </div>
-                {!this.state.isConnected&&<LoginPage/>}
 
-                {this.state.isConnected && this.state.currentePage==="HomePage" &&<HomePage Profile={this.setProfilePage} Logout={this.setLogout} home={this.getConnected}/>}
+                <Route exact path='/' render={(props) => this.state.isConnected ?<HomePage profile={this.setProfilePage} logout={this.setLogout} home={this.getConnected}/> : <LoginPage/>} />
+
+
                 <div  className="grid">
                     {this.state.isConnected && this.state.currentePage==="ProfilePage" && <ProfilePage/>}
                 </div>
             </div>
+            </Router>
         )
     }
 
 }
-function test(){
-    this.getConnected();
-}
 export default MainPage
+

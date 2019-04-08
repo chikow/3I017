@@ -1,20 +1,19 @@
 import React from 'react'
-
-import Login from "./Login";
+import Login from "./Login"
 import logo from "../logo.png"
 class LoginPage extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state={
-            signUp: false
         }
     }
 
 
     render() {
         return (
-            <div >
+            <div style={{'paddingTop': '60px'}}>
                 <img className="logo" src={logo}/>
+                <h1 style={{'paddingLeft':'675px', color:'cadetblue'}}> Welcome to Twister! </h1>
                 <div className="Login-page"><Login/></div>
             </div>
         )
