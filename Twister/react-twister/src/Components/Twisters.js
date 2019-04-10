@@ -1,14 +1,8 @@
 import React from 'react'
 import {Button, ButtonGroup, Container, Dropdown, Media} from "react-bootstrap";
-import {deepOrange} from "@material-ui/core/colors";
 import Avatar from "@material-ui/core/Avatar";
-
 import twistersData from "../Twist/TwisterData"
-import IconButton from "@material-ui/core/IconButton";
 
-import EditIcon from '../NotUsedComponent/EditIcon'
-import Comment from './Comments.js'
-import {Card, CardBody, Collapse} from "reactstrap";
 import CommentList from "./CommentList";
 class Twisters extends React.Component{
     constructor(){

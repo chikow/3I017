@@ -8,3 +8,5 @@ Menu bouton :(à rajouter dans la page d'accueil seulement)
 iconbutton for menu:
 <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                     </IconButton>
+
+onKeyPress={(e)=> e.key==='Enter'?this.handleSubmit():''}

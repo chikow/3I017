@@ -14,7 +14,9 @@ class LoginPage extends React.Component {
             <div style={{'paddingTop': '60px'}}>
                 <img className="logo" src={logo}/>
                 <h1 style={{'paddingLeft':'675px', color:'cadetblue'}}> Welcome to Twister! </h1>
-                <div className="Login-page"><Login/></div>
+                <div className="Login-page">
+                    <Login connecte={()=>this.props.connecte()} setUser={this.props.setUser}/>
+                </div>
             </div>
         )
     }

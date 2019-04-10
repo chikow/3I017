@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Login from '../Components/Login'
-import Logout from '../Components/Logout'
+import Logout from './Logout'
 import signUp from "./Signup";
 class NavigationPannel extends React.Component{
     constructor(props){

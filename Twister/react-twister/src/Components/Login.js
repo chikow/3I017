@@ -1,5 +1,5 @@
 import React from 'react'
-import Signup from '../NotUsedComponent/Signup'
+import Cookies from 'js-cookie';
 import Modalsignup from './Modalsignup'
 import {FormControl, InputGroup, Form, Button} from "react-bootstrap";
 import ModalPasswordForgot from "./ModalPasswordForgot";
@@ -12,13 +12,10 @@ class Login extends React.Component{
             passwordForgot: false,
             login:'',
             mdp:'',
-            key:"",
         }
         this.handleClickSignUp = this.handleClickSignUp.bind(this)
         this.handleClickPasswordForgot=this.handleClickPasswordForgot.bind(this)
         this.handleChange=this.handleChange.bind(this)
-        this.handleClickLogin=this.handleClickLogin(this)
-
     }
 
 
@@ -33,8 +30,25 @@ class Login extends React.Component{
             console.log(res);
             console.log(res.data);
             console.log(res.data.key)
-            if(res.data.hasOwnProperty('key')){
-                this.setState({key:  res.data.key})
+            if(res.data.ErrorCode===-1){
+                alert("Missing params:")
+            }
+            else if(res.data.ErrorCode===1001){ //USER does not exist.
+                alert(res.data.Message)
+            }
+            else if(res.data.ErrorCode===1006){//"Incorrect password."
+                alert(res.data.Message)
+            }
+            else if(res.data.ErrorCode===1007){//User already connected.
+                alert(res.data.Message)
+                this.props.connecte()
+                this.props.setUser(this.state.login)
+            }
+            else{
+                this.setState({show:false})
+                Cookies.set('key', res.data.key);
+                this.props.connecte()
+                this.props.setUser(this.state.login)
             }
         })
     }
@@ -60,10 +74,6 @@ class Login extends React.Component{
             }
         })
     }
-    handleClickLogin= ()=>
-    {if(this.state.key!=="");
-        {}
-    }
 
 
     render(){
@@ -85,7 +95,7 @@ class Login extends React.Component{
                     <div>
                         <label htmlFor="inputPassword5">Password</label>
                         <input type="password" id="inputPassword5" className="form-control" aria-describedby="passwordHelpBlock"
-                               ref={(mdp) => { this.mdp = mdp }} onChange={this.handleChange}/>
+                               ref={(mdp) => { this.mdp = mdp }} onChange={this.handleChange} />
                         <small id="passwordHelpBlock" className="form-text text-muted">
                         </small>
                     </div>
@@ -93,18 +103,15 @@ class Login extends React.Component{
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
 
-                    <Button variant="contained" type="submit" id="logbouton"
+                    <input type="submit" id="logbouton" value="Connect"
                             onClick={this.handleSubmit}
-                            style={{'color': 'cadetblue'}}>
-                        Connect
-                    </Button>
+                            style={{'color': 'cadetblue'}}/>
                 </div>
-
 
                     <div>
                         <div><Button variant="light" id="logbouton"  onClick={this.handleClickPasswordForgot} style={{'color': 'cadetblue'}} >Forgot password?</Button></div>
                         <Button variant="light" onClick={this.handleClickSignUp} id='logbouton' style={{'color': 'cadetblue'}}>Sign up here!</Button>
-                       {this.state.signUp&&<Modalsignup show={true}/>}
+                       {this.state.signUp&&<Modalsignup connecte={this.props.connecte} show={true}/>}
                         {this.state.passwordForgot&&<ModalPasswordForgot show={true}/>}
                     </div>
             </div>

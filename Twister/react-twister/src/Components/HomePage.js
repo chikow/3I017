@@ -10,13 +10,13 @@ class HomePage extends React.Component{
         super(props)
         this.state = {
             modalAddTwist:false,
-            user:'Delpax',
         }
         this.OnAddTwist=this.OnAddTwist.bind(this)
     }
     OnAddTwist(){
         this.setState({
-            addTwist:!this.state.addTwist
+            addTwist:!this.state.addTwist,
+
         });
     }
     render(){
@@ -39,10 +39,10 @@ class HomePage extends React.Component{
                             Click me to add a twister!
                         </h5>
                         <div className="add-twist-icon">
-                            {this.state.user.substr(0, 1)}
+                            {this.props.user.substr(0, 1)}
                         </div>
                     </button>
-                    {this.state.addTwist?<AddTwistModalVersion modalAddTwist={this.state.addTwist}/>:''}
+                    {this.state.addTwist?<AddTwistModalVersion modalAddTwist={this.state.addTwist} />:''}
                     <div className="animate-Twister">
                     <Twisters/>
                     </div>

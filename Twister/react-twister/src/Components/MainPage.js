@@ -8,19 +8,28 @@ class MainPage extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            isConnected : false,
-            currentePage: "LoginPage"
+            user:"",
+            isConnected : true,
+            currentePage: "HomePage"
         }
         this.getConnected = this.getConnected.bind(this)
         this.setLogout = this.setLogout.bind(this)
         this.setProfilePage=this.setProfilePage.bind(this);
+        this.setUser=this.setUser.bind(this)
     }
-
-    getConnected(key) {
+    setUser(value){
+        this.setState({user:value})
+        alert(this.state.user)
+    }
+    getConnected() {
+        console.log(this.isConnected);
         this.setState( {
             isConnected: true,
             currentePage: "HomePage",
         })
+
+
+        console.log(this.isConnected);
     }
     setLogout(){
         this.setState({
@@ -38,20 +47,20 @@ class MainPage extends React.Component{
 
     render(){
         return (
-            <Router>
+
             <div>
                 <div style={{position:'absolute'}}>
                     <SearchAppBar home={this.getConnected}/>
                 </div>
 
-                <Route exact path='/' render={(props) => this.state.isConnected ?<HomePage profile={this.setProfilePage} logout={this.setLogout} home={this.getConnected}/> : <LoginPage/>} />
+                {this.state.isConnected ?<HomePage profile={this.setProfilePage} logout={this.setLogout} home={this.getConnected} user={this.state.user}/> : <LoginPage connecte={()=>this.getConnected()} setUser={this.setUser}/>}
 
 
                 <div  className="grid">
                     {this.state.isConnected && this.state.currentePage==="ProfilePage" && <ProfilePage/>}
                 </div>
             </div>
-            </Router>
+
         )
     }
 
