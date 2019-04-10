@@ -39,7 +39,7 @@ class HomePage extends React.Component{
                             Click me to add a twister!
                         </h5>
                         <div className="add-twist-icon">
-                            {this.props.user.substr(0, 1)}
+                            {this.props.user.toUpperCase().substr(0, 1)}
                         </div>
                     </button>
                     {this.state.addTwist?<AddTwistModalVersion modalAddTwist={this.state.addTwist} />:''}

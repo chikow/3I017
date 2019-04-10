@@ -24,7 +24,6 @@ class Login extends React.Component{
         const params={
             login:this.state.login,
             mdp:this.state.mdp,
-
         }
         axios.post(`http://localhost:8080/Twister/Login`,null, {params}).then(res => {
             console.log(res);
@@ -41,6 +40,7 @@ class Login extends React.Component{
             }
             else if(res.data.ErrorCode===1007){//User already connected.
                 alert(res.data.Message)
+                Cookies.set('key', res.data.key);
                 this.props.connecte()
                 this.props.setUser(this.state.login)
             }

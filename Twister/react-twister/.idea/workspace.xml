@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98b076d3-bfe9-430a-80a6-343f4fc0ff15" name="Default Changelist" comment="OKKk">
+    <list default="true" id="98b076d3-bfe9-430a-80a6-343f4fc0ff15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AddTwistModalVersion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AddTwistModalVersion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/NotUsedComponent/Logout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ModalPasswordForgot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ModalPasswordForgot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Modalsignup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Modalsignup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Twisters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Twisters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KeepInMind.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/KeepInMind.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NotUsedComponent/NavigationPannel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/NotUsedComponent/NavigationPannel.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/MainPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
+            <state relative-caret-position="289">
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -43,7 +33,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/AddTwistModalVersion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
+            <state relative-caret-position="680">
               <caret line="58" column="89" selection-start-line="58" selection-start-column="89" selection-end-line="58" selection-end-column="89" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -120,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="25" column="31" lean-forward="true" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+            <state relative-caret-position="442">
+              <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -135,8 +125,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/HomePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="44" column="54" lean-forward="true" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+            <state relative-caret-position="493">
+              <caret line="38" column="54" lean-forward="true" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -226,10 +216,10 @@
         <option value="$PROJECT_DIR$/src/Components/Modalsignup.js" />
         <option value="$PROJECT_DIR$/src/Components/ModalPasswordForgot.js" />
         <option value="$PROJECT_DIR$/src/Components/LoginPage.js" />
-        <option value="$PROJECT_DIR$/src/Components/MainPage.js" />
-        <option value="$PROJECT_DIR$/src/Components/HomePage.js" />
         <option value="$PROJECT_DIR$/src/Components/AddTwistModalVersion.js" />
+        <option value="$PROJECT_DIR$/src/Components/HomePage.js" />
         <option value="$PROJECT_DIR$/src/Components/Login.js" />
+        <option value="$PROJECT_DIR$/src/Components/MainPage.js" />
       </list>
     </option>
   </component>
@@ -341,7 +331,7 @@
       <workItem from="1554314762060" duration="1266000" />
       <workItem from="1554316719223" duration="35530000" />
       <workItem from="1554480081398" duration="74944000" />
-      <workItem from="1554908954163" duration="927000" />
+      <workItem from="1554908954163" duration="3020000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1554327946689</created>
@@ -378,11 +368,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554727176842</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="OKKk connexion">
+      <created>1554910155618</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1554910155618</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216833000" />
+    <option name="totallyTimeSpent" value="218926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -459,7 +456,8 @@
     <MESSAGE value="login ok" />
     <MESSAGE value="OKK" />
     <MESSAGE value="OKKk" />
-    <option name="LAST_COMMIT_MESSAGE" value="OKKk" />
+    <MESSAGE value="OKKk connexion" />
+    <option name="LAST_COMMIT_MESSAGE" value="OKKk connexion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -789,16 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/AddTwistModalVersion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="58" column="89" selection-start-line="58" selection-start-column="89" selection-end-line="58" selection-end-column="89" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../WebRef/components/TwistWrite.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -857,28 +845,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/HomePage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="44" column="54" lean-forward="true" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+        <state relative-caret-position="493">
+          <caret line="38" column="54" lean-forward="true" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Login.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/AddTwistModalVersion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="31" lean-forward="true" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        <state relative-caret-position="680">
+          <caret line="58" column="89" selection-start-line="58" selection-start-column="89" selection-end-line="58" selection-end-column="89" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/MainPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
+        <state relative-caret-position="289">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>

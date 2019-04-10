@@ -9,7 +9,7 @@ class MainPage extends React.Component{
         super(props)
         this.state = {
             user:"",
-            isConnected : true,
+            isConnected : false,
             currentePage: "HomePage"
         }
         this.getConnected = this.getConnected.bind(this)
@@ -19,7 +19,6 @@ class MainPage extends React.Component{
     }
     setUser(value){
         this.setState({user:value})
-        alert(this.state.user)
     }
     getConnected() {
         console.log(this.isConnected);
