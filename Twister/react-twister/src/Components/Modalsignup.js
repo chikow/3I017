@@ -1,20 +1,15 @@
-import {Button, FormControl, Modal} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 import React from 'react'
-import axios from "axios";
 class Modalsignup extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            show: props.show,
-            nom:'',
-            prenom:'',
-            mail:'',
-            login:'',
-            mdp:'',
-        };
+
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.handleChange=this.handleChange.bind(this);
+
+        this.state = {
+            show: props.show,
+        };
     }
 
     handleClose() {
@@ -25,49 +20,6 @@ class Modalsignup extends React.Component {
         this.setState({ show: true });
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
-        const params={
-            nom:this.state.nom,
-            prenom:this.state.prenom,
-            mail:this.state.mail,
-            login:this.state.login,
-            mdp:this.state.mdp,
-
-
-        };
-        axios.post(`http://localhost:8080/Twister/CreatUser`,null, {params}).then(res => {
-            console.log(res)
-            console.log(res.data)
-            console.log(res.data.nom)
-            console.log(res.data.prenom)
-            console.log(res.data.login)
-            console.log(res.data.mail)
-
-            if(res.data.ErrorCode===-1){
-                alert("Missing params:")
-            }
-            else if(res.data.ErrorCode===1004){ //Mail already used.
-                alert(res.data.Message)
-            }
-            else if(res.data.ErrorCode===1003){//Login already exists.
-                alert(res.data.Message)
-            }
-            else {
-                this.props.connecte()
-            }
-        })
-    };
-
-    handleChange(){
-        this.setState({
-            nom:this.nom.value,
-            prenom:this.prenom.value,
-            mail:this.mail.value,
-            login:this.login.value,
-            mdp:this.mdp.value,
-        })
-    }
     render() {
         return (
             <div>
@@ -81,40 +33,39 @@ class Modalsignup extends React.Component {
                         <form>
                             <div className="form-row">
                                 <div className="col">
-                                    <input type="text" className="form-control" placeholder="First name" ref={(nom) => { this.nom = nom}}
-                                           onChange={this.handleChange }/>
+                                    <input type="text" className="form-control" placeholder="First name"/>
                                 </div>
                                 <div className="col">
-                                    <input type="text" className="form-control" placeholder="Last name" ref={(prenom) => { this.prenom = prenom }}
-                                           onChange={this.handleChange}/>
+                                    <input type="text" className="form-control" placeholder="Last name"/>
                                 </div>
-                                <div className="col">
-                                        <input type="text" className="form-control" placeholder="Login" ref={(login) => { this.login = login }}
-                                               onChange={this.handleChange}/>
-                                </div>
-
+                            </div>
                             <div className="form-row">
-
                                 <div className="form-group col-md-6">
                                     <label htmlFor="inputEmail4">Email</label>
-                                    <input type="email" className="form-control" id="inputEmail4" placeholder="Email" ref={(mail) => { this.mail = mail }}
-                                           onChange={this.handleChange}/>
+                                    <input type="email" className="form-control" id="inputEmail4" placeholder="Email"/>
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="inputEmail4">Login</label>
+                                    <input type="email" className="form-control" id="inputEmail4" placeholder="Login"/>
                                 </div>
                                 <div>
                                     <label htmlFor="inputPassword5">Password</label>
-                                    <input type="password" id="inputPassword5" className="form-control" aria-describedby="passwordHelpBlock"
-                                           ref={(mdp) => { this.mdp = mdp }}
-                                           onChange={this.handleChange}/>
+                                    <input type="password" id="inputPassword5" className="form-control" aria-describedby="passwordHelpBlock"/>
                                     <small id="passwordHelpBlock" className="form-text text-muted">
                                         Your password must be 8-20 characters long, contain letters and numbers, and must not
                                         contain spaces, special characters, or emoji.
                                     </small>
                                 </div>
                             </div>
+                            <div className="form-group">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" id="gridCheck"/>
+                                    <label className="form-check-label" htmlFor="gridCheck">
+                                        Check me out
+                                    </label>
+                                </div>
                             </div>
-                            <input type="submit" id="logbouton" value="Sign Up"
-                                   onClick={this.handleSubmit}
-                                   style={{'color': 'cadetblue'}}/>
+                            <button type="submit" className="btn btn-primary">Sign up</button>
                         </form>
                     </Modal.Body>
                     <Modal.Footer>

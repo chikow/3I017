@@ -73,7 +73,7 @@ body{
 }
 #logbouton{
     padding: 5px;
-    "border-radius": 10px;
+"border-radius": 10px;
     margin:5px;
     color:green;
     border: solid 1px;
@@ -86,6 +86,7 @@ body{
 
 .NavBar{
     background-color: cadetblue;
+    z-index: 0;
 }
 
 html,
@@ -221,7 +222,7 @@ twisters container
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
 }
 .add-twister-div{
-    z-index:0 ;
+    z-index: auto ;
     position: relative;
     color: rgba(0, 0, 0, 0.87);
     background-color: rgb(255, 255, 255);
@@ -330,13 +331,13 @@ twisters container
     z-index: 1100;
 }
 .twister-like{
-     cursor: pointer;
-     position: relative;
-     overflow: visible;
-     display: table;
-     height: auto;
-     width: 100%;
-     transform: translate(6px, 6px);
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    display: table;
+    height: auto;
+    width: 100%;
+    transform: translate(6px, 6px);
     z-index: 1;
 }
 
@@ -390,7 +391,7 @@ twisters container
     top: 0px;
     left: 55px;
     pointer-events: auto;
-    z-index: 9;
+    z-index: auto;
 }
 
 .list-comment-button{
@@ -412,6 +413,6 @@ Twister container fin
     flex-wrap: wrap;
     flex-flow: row;
     justify-content: center;
-    z-index: 0;
+    z-index: auto;
     position: center;
 }
